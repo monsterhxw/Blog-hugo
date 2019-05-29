@@ -59,8 +59,8 @@ disqusShortname = ""                 # your discuss shortname
   visitor = true
 
 [social]
-  github = "https://github.com/monsterhxw "
-  twitter = " "
-  facebook = " "
-  weibo = " "
-  instagram = " "
+  github = "https://github.com/monsterhxw"
+#  twitter = " "
+#  facebook = " "
+#  weibo = " "
+#  instagram = " "
