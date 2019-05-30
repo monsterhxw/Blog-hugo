@@ -17,14 +17,10 @@ draft: false
 
 # 联系方式
 
-**If you have some questions after you see this article, you can contact me or you can find some info by clicking these links.**  
+If you have some questions after you see this article, you can contact me or you can find some info by clicking these links.  <br/><br/>
 
+**`GitHub`**— [https://github.com/monsterhxw](https://github.com/monsterhxw)
 
-
-`GitHub`  [https://github.com/monsterhxw](https://github.com/monsterhxw)  
-
-
-
-`Gmail`    <huangxueweihxw@gmail.com>
+**`Gmail`** —   <huangxueweihxw@gmail.com>
 
 
