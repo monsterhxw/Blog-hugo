@@ -11,8 +11,10 @@ slug: "first-blog-share"
 #### 问题
 
 我在毕业后的这一年内，很认真地去学习了很多新的技术，如 Spring Boot ，Docker，Gradle，Spring Security
+
 <!--more-->
-，OAuth 2 协议等等。但是很多时候学完一个新知识之后，我总会把自己学到的知识点给忘记了。
+
+，OAuth 2 协议等等。但是很多时候学完一个新知识之后，我总会把自己学到的知识点给忘记掉。
 
 #### 原因
 
