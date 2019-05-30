@@ -1,7 +1,7 @@
 baseURL = "https://monsterhxw.github.io"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
-title = "Mr.Monster Vivi"            # site title  # 网站标题
+title = "Vivi's Blog"                # site title  # 网站标题
 theme = "zozo"
 hasCJKLanguage = true                # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
 summaryLength = 100
@@ -38,8 +38,8 @@ disqusShortname = ""                 # your discuss shortname
   url = "/about/"
 
 [params]
-  subTitle = "A Personal Blog"                                       # site's subTitle  # 网站二级标题
-  footerSlogan = "Get busy living or Get busy dying"                 # site's footer slogan  # 网站页脚标语
+  subTitle = "Vivi's Blog"                                           # site's subTitle  # 网站二级标题
+  footerSlogan = "GET BUSY LIVING OR GET BUSY DYING"                 # site's footer slogan  # 网站页脚标语
   keywords = ["Code", "Great Perseverance"]                          # site's keywords  # 网站关键字
   description = "Mr.Monster's Personal Blog"                         # site's description  # 网站描述
 

@@ -1,13 +1,26 @@
 ---
-title: "关于"
-date: 2018-12-29T20:24:28+08:00
+title: "关于我"
+date: 2019-05-30T10:10:01+08:00
 hidden: true
 draft: false
 ---
 
-Hugo 官方主页: [https://gohugo.io/](https://gohugo.io/)
+# 本人
 
-Hugo的安装方式有两种，一种是直接下载编译好的Hugo二进制文件。如果只是使用Hugo推荐用这种方式。另一种方式是获取Hugo的源码，自己编译。由于各种不可预料的网络问题，第二种方式不是那么轻易能成功，虽然最后我还是折腾出来了。
+2018 届本科毕业生
 
-Hugo二进制下载地址: [https://github.com/gohugoio/hugo/releases](https://github.com/gohugoio/hugo/releases)
+现是一名 Java 开发工程师
+
+渴望能不断地精湛自我的能力
+
+并为此坚持！
+
+# 联系方式
+
+**If you have some questions after you see this article, you can contact me or you can find some info by clicking these links.**
+
+`GitHub`  [https://github.com/monsterhxw](https://github.com/monsterhxw)
+
+`Gmail`    <huangxueweihxw@gmail.com>
+
 
