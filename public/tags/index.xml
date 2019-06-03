@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Vivi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 May 2019 10:42:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 04 Jun 2019 00:10:00 +0800</lastBuildDate>
     
 	<atom:link href="https://monsterhxw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java</title>
+      <link>https://monsterhxw.github.io/tags/java/</link>
+      <pubDate>Tue, 04 Jun 2019 00:10:00 +0800</pubDate>
+      
+      <guid>https://monsterhxw.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LeetCode</title>
+      <link>https://monsterhxw.github.io/tags/leetcode/</link>
+      <pubDate>Tue, 04 Jun 2019 00:10:00 +0800</pubDate>
+      
+      <guid>https://monsterhxw.github.io/tags/leetcode/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>分享</title>
