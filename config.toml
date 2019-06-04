@@ -39,14 +39,14 @@ disqusShortname = ""                 # your discuss shortname
 
 [params]
   subTitle = "Vivi's Blog"                                           # site's subTitle  # 网站二级标题
-  footerSlogan = "GET BUSY LIVING OR GET BUSY DYING"                 # site's footer slogan  # 网站页脚标语
+  footerSlogan = "工欲善其事 必先利其器"                             # site's footer slogan  # 网站页脚标语
   keywords = ["Code", "Great Perseverance"]                          # site's keywords  # 网站关键字
   description = "Mr.Monster's Personal Blog"                         # site's description  # 网站描述
 
 # mathjax
-  enableMathJax = true                                                 # enable mathjax  # 是否使用mathjax（数学公式）
+  enableMathJax = true                                               # enable mathjax  # 是否使用mathjax（数学公式）
 
-  enableSummary = true                                                 # display the article summary  # 是否显示文章摘要
+  enableSummary = true                                               # display the article summary  # 是否显示文章摘要
   
 # Valine.
 # You can get your appid and appkey from https://leancloud.cn
