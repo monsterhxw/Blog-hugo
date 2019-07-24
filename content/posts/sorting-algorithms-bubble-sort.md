@@ -129,7 +129,7 @@ void bubble(int arr[], int n) {
 // 冒泡排序
 void bubbleSort(int arr[], int n) {
     int i;
-    // 从第 n - 1 次到第 1 次 冒泡
+    // 从第 n - 1 次到第 1 次冒泡
     for (i = n; i >= 1; i--) {
         bubble(arr, i);
     }
