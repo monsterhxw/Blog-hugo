@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://monsterhxw.github.io/posts/</loc>
+    <lastmod>2019-07-24T00:11:07+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://monsterhxw.github.io/tags/sorting-algorithm/</loc>
+    <lastmod>2019-07-24T00:11:07+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://monsterhxw.github.io/tags/</loc>
+    <lastmod>2019-07-24T00:11:07+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://monsterhxw.github.io/</loc>
+    <lastmod>2019-07-24T00:11:07+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://monsterhxw.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2019-07-24T00:11:07+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://monsterhxw.github.io/posts/sorting-algorithms-bubble-sort/</loc>
+    <lastmod>2019-07-24T00:11:07+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://monsterhxw.github.io/tags/java/</loc>
     <lastmod>2019-06-04T00:10:00+08:00</lastmod>
     <priority>0</priority>
@@ -10,24 +45,6 @@
   
   <url>
     <loc>https://monsterhxw.github.io/tags/leetcode/</loc>
-    <lastmod>2019-06-04T00:10:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://monsterhxw.github.io/posts/</loc>
-    <lastmod>2019-06-04T00:10:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://monsterhxw.github.io/tags/</loc>
-    <lastmod>2019-06-04T00:10:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://monsterhxw.github.io/</loc>
     <lastmod>2019-06-04T00:10:00+08:00</lastmod>
     <priority>0</priority>
   </url>

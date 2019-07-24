@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Huangxuewei"/>
+
+  
+  <meta name="description" content=" Sorting Algorithms : Bubble Sort
+ 冒泡排序的定义（Definition） Wikipedia 上对冒泡排序（Bubble Sort）描述：
+它一种简单的排序算法
+ 通过重复地走访要排序的数列，一次比较两个元素
+ 如果两个元素顺序错误，则进行交换
+ 重复地进行走访数列直到没有再需要交换，说明该数列已经排序完成。
+ "/>
+  
+
+  
+  
+  <meta name="keywords" content="Code, Great Perseverance"/>
+  
+
+  
+  <link rel="canonical" href="https://monsterhxw.github.io/posts/sorting-algorithms-bubble-sort/"/>
+
+  
+
+  <title>排序算法: 冒泡排序（Bubble Sort） &middot; Vivi&#39;s Blog</title>
+
+  <link rel="shortcut icon" href="https://monsterhxw.github.io/images/favicon.ico"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/zozo.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/about/">关于</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-link-unlink"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://monsterhxw.github.io">
+          <span>Vivi&#39;s Blog</span>
+          <img src="https://monsterhxw.github.io/images/logo.svg"/>
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Vivi&#39;s Blog</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/monsterhxw" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        <a href="https://monsterhxw.github.io/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/sorting-algorithms-bubble-sort/'>排序算法: 冒泡排序（Bubble Sort）</a></h2>
+          <span class="date">2019.07.24</span>
+        </div>
+        <div class="post_content markdown"><blockquote>
+<p>Sorting Algorithms : Bubble Sort</p>
+</blockquote>
+
+<h3 id="冒泡排序的定义-definition">冒泡排序的定义（Definition）</h3>
+
+<p><a href="https://zh.wikipedia.org/wiki/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F">Wikipedia 上对冒泡排序（Bubble Sort）描述</a>：</p>
+
+<p>它一种简单的排序算法</p>
+
+<ul>
+<li><p>通过重复地走访要排序的数列，一次比较两个元素</p></li>
+
+<li><p>如果两个元素顺序错误，则进行交换</p></li>
+
+<li><p>重复地进行走访数列直到没有再需要交换，说明该数列已经排序完成。</p></li>
+</ul>
+
+<p>这个算法的名字由来是因为越小的元素会经由交换慢慢&quot;浮&quot;到数列的顶端。</p>
+
+<h3 id="算法思路示例-example">算法思路示例（Example）</h3>
+
+<ul>
+<li><p>从第 0 个索引开始，比较第 1 个和第 2 个元素。如果第 1 个元素大于第 2 个元素，则交换它们。</p></li>
+
+<li><p>继续比较第 2 个和第 3 个元素。如果它们反序则交换它们。</p></li>
+
+<li><p>重复上述过程续到最后一个元素。</p></li>
+</ul>
+
+<p><img src="/bubble-sort-work-1.png" alt="bubble-sort-work-1" /></p>
+
+<ul>
+<li><p>对于剩余的迭代，将执行相同的过程。每次迭代之后，未排序元素中最大的元素放在最后。</p></li>
+
+<li><p>在每个迭代中，一直比较到最后一个还未排序的元素。</p></li>
+
+<li><p>当所有未排序的元素被放置在正确的位置时，数组排序完成。</p></li>
+</ul>
+
+<p><img src="/bubble-sort-work-2.png" alt="bubble-sort-work-2" /></p>
+
+<p><img src="/bubble-sort-work-3.png" alt="bubble-sort-work-3" /></p>
+
+<p><img src="/bubble-sort-work-4.png" alt="bubble-sort-work-4" /></p>
+
+<h3 id="算法复杂度-algorithm-complexity">算法复杂度（Algorithm Complexity）</h3>
+
+<p>冒泡排序是最简单的排序算法之一，算法是采用 <code>2</code> 个循环。</p>
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th>Pass</th>
+<th>Number of Comparisons</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1st</td>
+<td>(n - 1)</td>
+</tr>
+
+<tr>
+<td>2nd</td>
+<td>(n - 2)</td>
+</tr>
+
+<tr>
+<td>3rd</td>
+<td>(n - 3)</td>
+</tr>
+
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+
+<tr>
+<td>last</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<p>总的比较次数：(n - 1) + (n - 2) + (n - 3) + ... + 1 = n(n - 1) / 2 接近等于 n^2，因此复杂度为 <code>O(n^2)</code></p>
+
+<p>同时我们可以通过简单地观察循环次数来分析复杂性，因为算法使用了 2 个循环，因此复杂度为 <code>O(n * n )</code> =<code>O(n^2)</code></p>
+
+<p><br/></p>
+
+<p>时间复杂度（Time Complexities）：</p>
+
+<ul>
+<li><p>最坏情况的复杂度：<code>O(n^2)</code></p>
+
+<p>如果我们想按升序排序数组，但数组已经是按照降序排列好的，那么最坏的情况就会发生。</p></li>
+
+<li><p>最好情况的复杂度：<code>O(n)</code></p>
+
+<p>如果数组已经排序，那么就数组不需要排序。</p></li>
+
+<li><p>平均情况的复杂度：<code>O(n^2)</code></p>
+
+<p>当数组的元素是混乱的顺序（既不是升序也不是降序）时，就会发生这种情况。</p></li>
+</ul>
+
+<p>空间复杂度（Space Complexity）：</p>
+
+<ul>
+<li><p>因为需要一个临时变量 temp 用于交换，因此空间复杂度为 <code>O(1)</code></p></li>
+
+<li><p>在优化算法（下面会进行介绍）中，增加了标记（哨兵）变量 <code>swapped</code>，因此空间复杂度为 <code>O(2)</code></p></li>
+</ul>
+
+<p>稳定性（Stability）：</p>
+
+<ul>
+<li><p>稳定性概念</p>
+
+<pre><code>如果 a 原本在 b 前面，而 a = b，排序之后 a 仍然在 b 的前面，那么说明该排序是稳定的，反之说明该排序是不稳定的。
+</code></pre></li>
+
+<li><p>冒泡排序是稳定的（Stable）</p></li>
+</ul>
+
+<h3 id="冒泡排序的应用-bubble-sort-applications">冒泡排序的应用（Bubble Sort Applications）</h3>
+
+<p>冒泡排序使用于以下的情况：</p>
+
+<ul>
+<li><p>对于算法的复杂度并不重视。</p></li>
+
+<li><p>需要最少行的代码</p></li>
+</ul>
+
+<h3 id="代码实现-code-implementation">代码实现（Code Implementation）</h3>
+
+<p><code>C 语言实现</code></p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+// 冒泡
+void bubble(int arr[], int n) {
+    int i;
+    int temp;
+    // 一直比较到最后一个还未排序的元素,i 是从前往后循环
+    for (i = 0; i &lt; n - 1; i++) {
+        // 前一个大于后一个，则交换
+        if (arr[i] &gt; arr[i + 1]) {
+            temp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = temp;
+        }
+    }
+}
+
+// 冒泡排序
+void bubbleSort(int arr[], int n) {
+    int i;
+    // 排序次数，从第 n - 1 次到第 1 次
+    for (i = n; i &gt;= 1; i--) {
+        bubble(arr, i);
+    }
+}
+
+// Function to print an array
+void printArray(int arr[], int size) {
+    int i;
+    for (i = 0; i &lt; size; i++) {
+        printf(&quot;%d &quot;, arr[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+
+// Driver program to test above functions
+int main() {
+    int arr[] = {-2, 45, 0, 11, -9};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf(&quot;Array before sorting: \n&quot;);
+    printArray(arr, n);
+    bubbleSort(arr, n);
+    printf(&quot;\nArray after sorting: \n&quot;);
+    printArray(arr, n);
+    return 0;
+}
+</code></pre>
+
+<hr />
+
+<h3 id="冒泡排序的优化-optimized-bubble-sort">冒泡排序的优化（Optimized Bubble Sort）</h3>
+
+<ul>
+<li><p>在上面的代码中，即使数组已经完成排序，也会继续剩余的迭代然后进行元素比较，导致增加了执行时间。</p></li>
+
+<li><p>所以可以通过引入标记（哨兵）变量  <code>swapped</code>  来优化代码。在每次迭代之后，如果没有发生交换（即 <code>swapped</code> 为 <code>FALSE</code>），说明了此数列已经是有序的，则不需要执行进一步的循环。</p></li>
+</ul>
+
+<p>优化冒泡排序算法代码：</p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;÷
+
+// Optimized bubble sort in C
+void bubbleSort(int arr[], int n) {
+    int i, j, temp;
+    // The variable &quot;swapped&quot; is introduced for optimization.
+    int swapped = 1;
+    // 外循环规定了排序次数，从第 1 次到第 n - 1 次
+    for (i = 0; i &lt; n - 1 &amp;&amp; swapped; i++) {
+        swapped = 0;
+        // 内循环规定了剩余未排序元素,j 是从前往后循环
+        for (j = 0; j &lt; n - i - 1; j++) {
+            // 前一个大于后一个，则交换
+            if (arr[j] &gt; arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = 1;
+            }
+        }
+    }
+}
+
+// Function to print an array
+void printArray(int arr[], int size) {
+    int i;
+    for (i = 0; i &lt; size; i++) {
+        printf(&quot;%d &quot;, arr[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+
+// Driver program to test above functions
+int main() {
+    int arr[] = {-2, 45, 0, 11, -9};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf(&quot;Array before sorting: \n&quot;);
+    printArray(arr, n);
+    bubbleSort(arr, n);
+    printf(&quot;\nArray after sorting: \n&quot;);
+    printArray(arr, n);
+    return 0;
+}
+</code></pre>
+
+<hr />
+
+<h3 id="参考-references">参考（References）</h3>
+
+<p><a href="https://www.programiz.com/dsa/bubble-sort">Programiz - Bubble Sort Algorithm : https://www.programiz.com/dsa/bubble-sort</a></p>
+
+<p><a href="https://www.geeksforgeeks.org/bubble-sort/">GeeksforGeeks - Bubble Sort : https://www.geeksforgeeks.org/bubble-sort/</a></p>
+
+<p><a href="https://www.bilibili.com/video/av9830014">B 站 UP 主 - 正月点灯笼 - [算法教程] 几种经典排序的实现 : https://www.bilibili.com/video/av9830014 </a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Bubble_sort">Wikipedia - 冒泡排序 : https://en.wikipedia.org/wiki/Bubble_sort</a></p></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://monsterhxw.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
+                
+                <a href="https://monsterhxw.github.io/tags/sorting-algorithm/">Sorting Algorithm</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://monsterhxw.github.io/">Designed by MonsterVivi,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span>工欲善其事 必先利其器</span>
+  </div>
+</footer>
+
+
+
+<script src="https://monsterhxw.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://monsterhxw.github.io/js/zozo.js"></script>
+<script src="https://monsterhxw.github.io/js/highlight.pack.js"></script>
+<link  href="https://monsterhxw.github.io/css/fancybox.min.css" rel="stylesheet">
+<script src="https://monsterhxw.github.io/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>

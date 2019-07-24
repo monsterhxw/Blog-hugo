@@ -6,10 +6,35 @@
     <description>Recent content on Vivi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 04 Jun 2019 00:10:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2019 00:11:07 +0800</lastBuildDate>
     
 	<atom:link href="https://monsterhxw.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>排序算法: 冒泡排序（Bubble Sort）</title>
+      <link>https://monsterhxw.github.io/posts/sorting-algorithms-bubble-sort/</link>
+      <pubDate>Wed, 24 Jul 2019 00:11:07 +0800</pubDate>
+      
+      <guid>https://monsterhxw.github.io/posts/sorting-algorithms-bubble-sort/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Sorting Algorithms : Bubble Sort&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;冒泡排序的定义-definition&#34;&gt;冒泡排序的定义（Definition）&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F&#34;&gt;Wikipedia 上对冒泡排序（Bubble Sort）描述&lt;/a&gt;：&lt;/p&gt;
+
+&lt;p&gt;它一种简单的排序算法&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;通过重复地走访要排序的数列，一次比较两个元素&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果两个元素顺序错误，则进行交换&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;重复地进行走访数列直到没有再需要交换，说明该数列已经排序完成。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     
     <item>
       <title>刷 LeetCode 系列 [1] : 两数之和</title>
