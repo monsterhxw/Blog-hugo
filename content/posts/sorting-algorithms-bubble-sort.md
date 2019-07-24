@@ -168,7 +168,7 @@ int main() {
 优化冒泡排序算法代码：
 
 ```c
-#include <stdio.h>÷
+#include <stdio.h>
 
 // Optimized bubble sort in C
 void bubbleSort(int arr[], int n) {
