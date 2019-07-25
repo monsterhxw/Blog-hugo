@@ -143,7 +143,7 @@ $ git commit -m 'update .gitignore'
 
 - 在 `git rm` 命令中加上选项 `--cached` 意味着该文件将从 Repository 中删除，被忽略的文件继续保留在工作目录中。
 
-- 可以解决创建 `.gitignore` 文件之前已经将一下不需要提交的文件 `push` 到 Repository 中去，但又想在 Repository 中去掉这些不需要提交的文件的问题
+- 可以解决创建 `.gitignore` 文件之前已经将不需要提交的文件 `push` 到 Repository 中去，但又想在 Repository 中去掉这些不需要提交的文件的问题
 
 ### 提交已被忽略的文件（Committing An Ignored File）
 
