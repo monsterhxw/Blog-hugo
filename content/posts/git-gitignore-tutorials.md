@@ -129,7 +129,7 @@ $ git config --global core.excludesFile ~/.gitignore
 
 ### 忽略以前提交的文件（Ignoring a Previously Committed File）
 
-如果要忽略过去提交的文件，则需要从 Repository 中删除该文件，然后为其添加 `.gitignore` 规则。`.gitignore` 文件只是忽略没有被 `staged(cached)c 的文件，对于已经被 `staged(cached) ` 文件，所以添加规则到 `.gitignore` 文件时一定要先从 `staged(cached)` 移除，才可以忽略。
+如果要忽略过去提交的文件，则需要从 Repository 中删除该文件，然后为其添加 `.gitignore` 规则。`.gitignore` 文件只是忽略没有被 `staged(cached)c` 的文件，对于已经被 `staged(cached) ` 文件，所以添加规则到 `.gitignore` 文件时一定要先从 `staged(cached)` 移除，才可以忽略。
 
 #### 命令如下：
 
