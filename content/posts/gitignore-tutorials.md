@@ -57,9 +57,14 @@ slug: "gitignore-tutorials"
 ### Git 忽略规则（Git Ignore Patterns）
 
 - 被忽略的文件是在 .gitignore 的特殊文件中进行跟踪的
+
 - 该文件创建在 Git 工作区的根目录下
+
 - 当需要忽略的新文件时，按照 Git 忽略规则（Git ignore patterns）来编辑 .gitignore 文件，并且进行提交
+
 - .gitignore 文件使用 [globbing patterns](https://linux.die.net/man/7/glob) 来匹配文件名
+
+---
 
 |        Pattern         | 匹配示例                                                     | 说明 |
 | :--------------------- | :----------------------------------------------------------- | :--- |
@@ -80,4 +85,6 @@ slug: "gitignore-tutorials"
 |                        |                                                              |      |
 |                        |                                                              |      |
 |                        |                                                              |      |
+
+---
 
