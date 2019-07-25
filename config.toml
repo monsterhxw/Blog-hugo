@@ -39,9 +39,10 @@ disqusShortname = ""                 # your discuss shortname
 
 [params]
   subTitle = "Vivi's Blog"                                           # site's subTitle  # 网站二级标题
-  footerSlogan = "工欲善其事 必先利其器"                             # site's footer slogan  # 网站页脚标语
+  footerSlogan = "工欲善其事 必先利其器"                                # site's footer slogan  # 网站页脚标语
   keywords = ["Code", "Great Perseverance"]                          # site's keywords  # 网站关键字
   description = "Mr.Monster's Personal Blog"                         # site's description  # 网站描述
+  mathjax = true                                                     # 支持 MathJax 数学公式
 
 # mathjax
   enableMathJax = true                                               # enable mathjax  # 是否使用mathjax（数学公式）
@@ -60,7 +61,7 @@ disqusShortname = ""                 # your discuss shortname
 
 [social]
   github = "https://github.com/monsterhxw"
-#  twitter = " "
+  twitter = "https://twitter.com/Huangxuewei1"
 #  facebook = " "
 #  weibo = " "
 #  instagram = " "

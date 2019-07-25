@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Huangxuewei"/>
+
+  
+  <meta name="description" content=" Git 的忽略特殊文件 .gitignore
+ Git 将工作副本中的每个文件视为以下三种情况之一：  已跟踪的文件（tracked）
+先前已被暂存或已提交的文件
+ 未跟踪的文件（untracked）
+未暂存或者未提交的文件
+ 忽略文件（ignored）
+显式告知 Git 要忽略的文件
+ "/>
+  
+
+  
+  
+  <meta name="keywords" content="Code, Great Perseverance"/>
+  
+
+  
+  <link rel="canonical" href="https://monsterhxw.github.io/posts/gitignore-tutorials/"/>
+
+  
+
+  <title>学习 Git 系列 : .gitignore 文件 &middot; Vivi&#39;s Blog</title>
+
+  <link rel="shortcut icon" href="https://monsterhxw.github.io/images/favicon.ico"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/zozo.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/about/">关于</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-link-unlink"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://monsterhxw.github.io">
+          <span>Vivi&#39;s Blog</span>
+          <img src="https://monsterhxw.github.io/images/logo.svg"/>
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Vivi&#39;s Blog</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/monsterhxw" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Huangxuewei1" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        <a href="https://monsterhxw.github.io/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/gitignore-tutorials/'>学习 Git 系列 : .gitignore 文件</a></h2>
+          <span class="date">2019.07.25</span>
+        </div>
+        <div class="post_content markdown"><blockquote>
+<p>Git 的忽略特殊文件 .gitignore</p>
+</blockquote>
+
+<h3 id="git-将工作副本中的每个文件视为以下三种情况之一">Git 将工作副本中的每个文件视为以下三种情况之一：</h3>
+
+<ul>
+<li><p>已跟踪的文件（tracked）</p>
+
+<p>先前已被暂存或已提交的文件</p></li>
+
+<li><p>未跟踪的文件（untracked）</p>
+
+<p>未暂存或者未提交的文件</p></li>
+
+<li><p>忽略文件（ignored）</p>
+
+<p>显式告知 Git 要忽略的文件</p></li>
+</ul>
+
+<h3 id="需要忽略的文件">需要忽略的文件</h3>
+
+<p>需要被忽略的文件通常是开发工具自动生成的文件和 build artifacts，这些文件可以在你的本地库派生出来，是一种非必要提交的文件</p>
+
+<p>例如：</p>
+
+<ul>
+<li><p>依赖缓存（Dependency Caches）</p>
+
+<p>如 <code>/node_modules</code> 或者 <code>/packages</code></p></li>
+
+<li><p>已编译的代码（Compiled Code）</p>
+
+<p>如 Java 的字节码文件 <code>.class</code> ，c 语言编译后生成的对象文件 <code>.o</code> 和 Python 编译后的字节码文件 <code>.pyc</code></p></li>
+
+<li><p>构建输出的目录（Build Output Directories）</p>
+
+<p>如 <code>/out</code>, <code>/bin</code> , <code>/target</code></p></li>
+
+<li><p>在程序运行时生成的文件（Files Generated at Runtime）</p>
+
+<p>如 <code>.log</code>, <code>.lock</code>, <code>.tmp</code></p></li>
+
+<li><p>系统隐藏的文件（Hidden System Files）</p>
+
+<p>如 <code>.DS_Store</code> , <code>Thumbs.db</code></p></li>
+
+<li><p>开发 IDE 的配置文件（Personal IDE Config Files）</p>
+
+<p>如 <code>.idea</code>, <code>/workspace.xml</code></p></li>
+</ul>
+
+<h3 id="git-忽略规则-git-ignore-patterns">Git 忽略规则（Git Ignore Patterns）</h3>
+
+<ul>
+<li>被忽略的文件是在 .gitignore 的特殊文件中进行跟踪的</li>
+<li>该文件创建在 Git 工作区的根目录下</li>
+<li>当需要忽略的新文件时，按照 Git 忽略规则（Git ignore patterns）来编辑 .gitignore 文件，并且进行提交</li>
+<li>.gitignore 文件使用 <a href="https://linux.die.net/man/7/glob">globbing patterns</a> 来匹配文件名</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="left">Pattern</th>
+<th align="left">匹配示例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>**/logs</code></td>
+<td align="left">匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/monday/foo.bar</code><br/>&emsp;<code>build/logs/debug.log</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>**/logs/debug.log</code></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>build/logs/debug.log</code><br/>不匹配 :<br/>&emsp;<code>logs/build/debug.log</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><br/><code>*.log</code></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>foo.log</code><br/>&emsp;<code>.log</code><br/>&emsp;<code>logs/debug.log</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>*.log</code><br/><code>!important.log</code></td>
+<td align="left"><br/></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://monsterhxw.github.io/tags/git/">Git</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://monsterhxw.github.io/">Designed by MonsterVivi,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span>工欲善其事 必先利其器</span>
+  </div>
+</footer>
+
+
+
+<script src="https://monsterhxw.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://monsterhxw.github.io/js/zozo.js"></script>
+<script src="https://monsterhxw.github.io/js/highlight.pack.js"></script>
+<link  href="https://monsterhxw.github.io/css/fancybox.min.css" rel="stylesheet">
+<script src="https://monsterhxw.github.io/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>
