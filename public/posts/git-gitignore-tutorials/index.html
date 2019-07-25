@@ -128,7 +128,7 @@
 
 <h3 id="需要忽略的文件">需要忽略的文件</h3>
 
-<p>需要被忽略的文件通常是开发工具自动生成的文件和 build artifacts，这些文件可以在你的本地库派生出来，是一种非必要提交的文件</p>
+<p>需要被忽略的文件指的是通常是开发工具自动生成的文件或者 build artifacts 的文件，这些文件可以在你的本地库派生出来，是一种非必要提交的文件。</p>
 
 <p>例如：</p>
 
@@ -158,7 +158,7 @@
 <p>如 <code>.idea</code>, <code>/workspace.xml</code></p></li>
 </ul>
 
-<h3 id="git-忽略规则-git-ignore-patterns">Git 忽略规则（Git Ignore Patterns）</h3>
+<h3 id="git-忽略模式-git-ignore-patterns">Git 忽略模式（Git Ignore Patterns）</h3>
 
 <ul>
 <li>被忽略的文件是在 .gitignore 的特殊文件中进行跟踪的</li>
@@ -183,8 +183,13 @@
 <ol>
 <li>星号 <code>*</code> 表示匹配零个或多个任意字符</li>
 <li>双星号 <code>**</code> 表示匹配 Repository 中任何位置的目录</li>
+<li>问号 <code>?</code> 表示匹配单个任意字符</li>
+<li>方括号 <code>[]</code> 表示匹配在方括号列表中的任意一个字符（如 <code>[abc]</code>，要么匹配  <code>a</code>，要么匹配  <code>b</code>， 要么匹配 <code>c</code>）</li>
+<li>方括号 <code>[]</code> 中使用短划线 <code>-</code> 分隔两个字符表示匹配这两个字符范围内的任意一个字符（如 <code>[0-9]</code>表示匹配 <code>0</code> 至 <code>9</code> 任意一个字符）</li>
 </ol></li>
 </ul>
+
+<h4 id="示例">示例</h4>
 
 <hr />
 
@@ -213,102 +218,183 @@
 <tr>
 <td align="left"><br/><br/><code>*.log</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>foo.log</code><br/>&emsp;<code>.log</code><br/>&emsp;<code>logs/debug.log</code></td>
-<td align="left">星号 <code>*</code> 是一个匹配零个或多个任意字符的通配符。</td>
+<td align="left"><br/>星号 <code>*</code> 是一个匹配零个或多个任意字符的通配符。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>*.log</code><br/><code>!important.log</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>trace.log</code><br/>不匹配 :<br>&emsp;<code>important.log</code><br>&emsp;<code>logs/important.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>就算之前已匹配相应模式的要被忽略的文件，但之后添加感叹号 <code>!</code> 会使 <code>!</code> 所定义的文件变成无效，不会忽略该文件。需要注意的是如果文件的父目录已经被前面的规则忽略掉了，那么对这个文件用 <code>!</code> 是不起作用的）<br/>如场景：我们只需要管理 <code>/logs/</code> 目录中的 <code>debug.log</code> 文件，该目录其他文件不需要管理，那么该规则应写为<br/><code>/logs/*</code><br/><code>!/logs/debug.log</code><br/>注意 <code>/logs/*</code> 不能写成 <code>/logs/</code>，否则父目录就被前面的规则忽略了，<code>debug.log</code> 文件虽然加 <code>!</code> 不忽略规则，但也不会生效</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>*.log</code><br/><code>!important/*.log</code><br/><code>trace.*</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>important/trace.log</code><br/>不匹配 :<br/>&emsp;<code>important/debug.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>在不忽略规则之后，再定义忽略规则，将重新忽略任何先前否定的文件。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>/debug.log</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>不匹配 :<br/>&emsp;<code>logs/debug.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>设置斜杠 <code>/</code> 规则，那么只匹配 Repository 根目录中的文件。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>debug.log</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>logs/debug.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>默认情况下，匹配任何目录中的文件</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>debug?.log</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug0.log</code><br/>&emsp;<code>debugg.log</code><br/>不匹配 :<br/>&emsp;<code>debug10.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>问号 <code>?</code> 表示只匹配单个任意字符</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>debug[0-9].log</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug0.log</code><br/>&emsp;<code>debug1.log</code><br/>不匹配 :<br/>&emsp;<code>debug10.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>方括号 <code>[]</code> 中使用短划线 <code>-</code> 分隔两个字符，匹配指定范围内的单个字符。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>debug[01].log</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug0.log</code><br/>&emsp;<code>debug1.log</code><br/>不匹配 :<br/>&emsp;<code>debug2.log</code><br/>&emsp;<code>debug01.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>方括号<code>[]</code>匹配在方括号列表中的任意一个字符</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>debug[!01].log</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug2.log</code><br/>不匹配 :<br/>&emsp;<code>debug0.log</code><br/>&emsp;<code>debug1.log</code><br/>&emsp;<code>debug01.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>感叹号 <code>!</code> 可用于匹配除方括号列表之外的任何字符。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>debug[a-z].log</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debuga.log</code><br/>&emsp;<code>debugb.log</code><br/>不匹配 :<br/>&emsp;<code>debug1.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>方括号 <code>[]</code> 中使用短划线 <code>-</code> 分隔两个字符，匹配指定范围内的单个字符。范围可以是数字或字母。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>logs</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>logs</code><br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/latest/foo.bar</code><br/>&emsp;<code>build/logs</code><br/>&emsp;<code>build/logs/debug.log</code><br/></td>
-<td align="left"></td>
+<td align="left"><br/>如果不添加斜杠 <code>/</code>，则会匹配文件和具有该名称的目录的内容。在左侧的示例中，将会忽略名为 logs 的目录和文件</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>logs/</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/latest/foo.bar</code><br/>&emsp;<code>build/logs/foo.bar</code><br/>&emsp;<code>build/logs/latest/debug.log</code><br/></td>
-<td align="left"></td>
+<td align="left"><br/>斜杠<code>/</code>表示该匹配是目录。将忽略与该名称匹配的存储库中任何目录的全部内容（包括其所有文件和子目录）</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>logs/</code><br/><code>!logs/important.log</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/important.log</code><br/></td>
-<td align="left"></td>
+<td align="left"><br/>如果文件的父目录已经被前面的规则忽略掉了，那么对这个文件用 <code>!</code> 是不起作用的</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>logs/**/debug.log</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/monday/debug.log</code><br/>&emsp;<code>logs/monday/pm/debug.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>双星号 <code>**</code> 匹配零个或多个目录。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>logs/*day/debug.log</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>logs/monday/debug.log</code><br/>&emsp;<code>logs/tuesday/debug.log</code><br/>不匹配 :<br/>&emsp;<code>logs/latest/debug.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>星号 <code>*</code> 也可用于目录名称。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>logs/debug.log</code><br/></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>不匹配 :<br/>&emsp;<code>build/logs/debug.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>指定特定目录中的文件的规则与 Repository 根目录相关。（也可以在开头添加一个斜杠 <code>/logs/debug.log</code>，但 Git 不会做特殊处理）</td>
 </tr>
 </tbody>
 </table>
 
-<hr /></div>
+<hr />
+
+<h3 id="git-支持的忽略规则-git-ignore-rules">Git 支持的忽略规则（Git Ignore Rules）</h3>
+
+<ul>
+<li><p>全局忽略规则（Global Git ignore rules）</p>
+
+<p>可以通过设置 Git <code>core.excludesFile</code> 属性为本地系统上的所有存储库定义全局 Git 忽略模式。</p>
+
+<p>该文件需要手动创建这个文件。如果不确定将<code>全局 gitignore</code>  文件放在何处，建议放在主目录。</p>
+
+<p>创建文件后，需要手动修改配置文件 git config 配置其位置</p></li>
+</ul>
+
+<pre><code class="language-shell">	$ touch ~/.gitignore
+	$ git config --global core.excludesFile ~/.gitignore
+</code></pre>
+
+<ul>
+<li><p>个人本地忽略规则（Personal Git Ignore Rules）</p>
+
+<p>可以在 <code>.git/info/exclude</code> 的特殊文件中为特定 Repository 定义个人忽略模式。</p>
+
+<p>它是没有版本可言，也没有随你的 Repository 分发，因此它适合包含个人本地所需要的模式（Patterns）。</p>
+
+<p>如本地有自定义日志记录设置或在存储库工作目录中生成文件的特殊开发工具，则可以考虑将它们添加到 <code>.git/info/exclude</code> 文件中，以防止它们意外地提交到你的 Repository。</p>
+
+<p>注意：该 <code>.git/info/exclude</code>文件规则和  <code>.gitignore</code> 文件一致。</p></li>
+</ul>
+
+<h3 id="忽略以前提交的文件-ignoring-a-previously-committed-file">忽略以前提交的文件（Ignoring a Previously Committed File）</h3>
+
+<p>如果要忽略过去提交的文件，则需要从 Repository 中删除该文件，然后为其添加 <code>.gitignore</code> 规则。<code>.gitignore</code> 文件只是忽略没有被 <code>staged(cached)c 的文件，对于已经被</code>staged(cached) <code>文件，所以添加规则到</code>.gitignore<code>文件时一定要先从</code>staged(cached)` 移除，才可以忽略。</p>
+
+<h4 id="命令如下">命令如下：</h4>
+
+<pre><code class="language-shell">$ git rm -r --cached .
+$ git add .
+$ git commit -m 'update .gitignore'
+</code></pre>
+
+<p>注意：</p>
+
+<ul>
+<li><p>在 <code>git rm</code> 命令中加上选项 <code>--cached</code> 意味着该文件将从 Repository 中删除，被忽略的文件继续保留在工作目录中。</p></li>
+
+<li><p>可以解决创建 <code>.gitignore</code> 文件之前已经将一下不需要提交的文件 <code>push</code> 到 Repository 中去，但又想在 Repository 中去掉这些不需要提交的文件的问题</p></li>
+</ul>
+
+<h3 id="提交已被忽略的文件-committing-an-ignored-file">提交已被忽略的文件（Committing An Ignored File）</h3>
+
+<p>如果想提交已被 <code>.gitignore</code> 忽略一个文件到 Repository，可以使用以下的命令</p>
+
+<pre><code class="language-shell">$ git add -f debug.log
+$ git commit -m &quot;Force adding debug.log&quot;
+</code></pre>
+
+<h3 id="调试-gitignore-文件-debugging-gitignore-files">调试 .gitignore 文件（Debugging .gitignore Files）</h3>
+
+<p>当写了复杂的 <code>.gitignore</code> 规则或遍布多个 <code>.gitignore</code> 文件的规则，但提交不了想要提交的文件的时候，可能是 <code>.gitignore</code> 写得有问题，这时候需要找出来到底哪个规则写错了，这时可以将通过<code>git check-ignore</code> 命令加上选项 <code>-v（或--verbose）</code> 以确定导致需要提交的文件却被忽略的问题。</p>
+
+<pre><code class="language-shell">$ git check-ignore -v debug.log
+.gitignore:3:*.log debug.log
+</code></pre>
+
+<h3 id="github-收集的-gitignore-文件的模板-a-collection-of-useful-gitignore-templates-by-github">GitHub 收集的 <code>.gitignore</code> 文件的模板(A Collection of Useful .gitignore Templates By GitHub)</h3>
+
+<p>GitHub 上有许多已经配置好的 <code>.gitignore</code> 文件的模板，我们可以通过参考这些模版来组成自己的 <code>.gitignore</code> 文件。</p>
+
+<p><br/></p>
+
+<p><a href="https://github.com/github/gitignore">GitHub 收集的 <code>.gitignore</code> 文件的模板的地址 : https://github.com/github/gitignore</a></p>
+
+<h3 id="参考资料-reference">参考资料（Reference）</h3>
+
+<ol>
+<li><p><a href="https://www.atlassian.com/git/tutorials/saving-changes/gitignore">Atlassian - Bitbucket - Git - tutorials </a></p></li>
+
+<li><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰 - Git教程</a></p></li>
+
+<li><p><a href="https://github.com/github/gitignore">GitHub 收集的 .gitignore 文件的模板的地址</a></p></li>
+</ol></div>
         <div class="post_footer">
           
           <div class="meta">
