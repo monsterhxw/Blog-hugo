@@ -217,10 +217,11 @@ int main() {
 
 ### 参考（References）
 
-[Programiz - Bubble Sort Algorithm : https://www.programiz.com/dsa/bubble-sort](https://www.programiz.com/dsa/bubble-sort)
+1. [Programiz - Bubble Sort Algorithm : https://www.programiz.com/dsa/bubble-sort](https://www.programiz.com/dsa/bubble-sort)
 
-[GeeksforGeeks - Bubble Sort : https://www.geeksforgeeks.org/bubble-sort/](https://www.geeksforgeeks.org/bubble-sort/)
+2. [GeeksforGeeks - Bubble Sort : https://www.geeksforgeeks.org/bubble-sort/](https://www.geeksforgeeks.org/bubble-sort/)
 
-[B 站 UP 主 - 正月点灯笼 - [算法教程] 几种经典排序的实现 : https://www.bilibili.com/video/av9830014 ](https://www.bilibili.com/video/av9830014)
+3. [B 站 UP 主 - 正月点灯笼 - [算法教程] 几种经典排序的实现 : https://www.bilibili.com/video/av9830014 ](https://www.bilibili.com/video/av9830014)
 
-[Wikipedia - 冒泡排序 : https://en.wikipedia.org/wiki/Bubble_sort](https://en.wikipedia.org/wiki/Bubble_sort)
+4. [Wikipedia - 冒泡排序 : https://en.wikipedia.org/wiki/Bubble_sort](https://en.wikipedia.org/wiki/Bubble_sort)
+

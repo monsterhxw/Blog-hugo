@@ -11,7 +11,7 @@
 
   
   <meta name="description" content=" Git 的忽略特殊文件 .gitignore
- Git 将工作副本中的每个文件视为以下三种情况之一：  已跟踪的文件（tracked）
+ Git 将工作副本中的每个文件视为以下三种情况  已跟踪的文件（tracked）
 先前已被暂存或已提交的文件
  未跟踪的文件（untracked）
 未暂存或者未提交的文件
@@ -26,7 +26,7 @@
   
 
   
-  <link rel="canonical" href="https://monsterhxw.github.io/posts/gitignore-tutorials/"/>
+  <link rel="canonical" href="https://monsterhxw.github.io/posts/git-gitignore-tutorials/"/>
 
   
 
@@ -103,14 +103,14 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/posts/gitignore-tutorials/'>学习 Git 系列 : .gitignore 文件</a></h2>
+          <h2><a href='/posts/git-gitignore-tutorials/'>学习 Git 系列 : .gitignore 文件</a></h2>
           <span class="date">2019.07.25</span>
         </div>
         <div class="post_content markdown"><blockquote>
 <p>Git 的忽略特殊文件 .gitignore</p>
 </blockquote>
 
-<h3 id="git-将工作副本中的每个文件视为以下三种情况之一">Git 将工作副本中的每个文件视为以下三种情况之一：</h3>
+<h3 id="git-将工作副本中的每个文件视为以下三种情况">Git 将工作副本中的每个文件视为以下三种情况</h3>
 
 <ul>
 <li><p>已跟踪的文件（tracked）</p>
@@ -161,13 +161,29 @@
 <h3 id="git-忽略规则-git-ignore-patterns">Git 忽略规则（Git Ignore Patterns）</h3>
 
 <ul>
-<li><p>被忽略的文件是在 .gitignore 的特殊文件中进行跟踪的</p></li>
+<li>被忽略的文件是在 .gitignore 的特殊文件中进行跟踪的</li>
+<li>该文件创建在 Git 工作区的根目录下</li>
+<li>当需要忽略的新文件时，按照 Git 忽略规则（Git ignore patterns）来编辑 .gitignore 文件，并且进行提交</li>
+<li>.gitignore 文件使用 <a href="https://linux.die.net/man/7/glob">Globbing Patterns</a> 规范来匹配文件名</li>
+</ul>
 
-<li><p>该文件创建在 Git 工作区的根目录下</p></li>
+<h4 id="gitignore-文件规则">.gitignore 文件规则</h4>
 
-<li><p>当需要忽略的新文件时，按照 Git 忽略规则（Git ignore patterns）来编辑 .gitignore 文件，并且进行提交</p></li>
+<ul>
+<li>基本规范
 
-<li><p>.gitignore 文件使用 <a href="https://linux.die.net/man/7/glob">globbing patterns</a> 来匹配文件名</p></li>
+<ol>
+<li>以 <code>#</code> 开头的行或者 <code>空行</code> 会被 Git 所忽略（<code>#</code>  作注释）</li>
+<li>目录或者文件前加 <code>/</code> 开头表示 Repository 根目录下的目录或文件</li>
+<li>以斜杠 <code>/</code> 结尾表示忽略目录</li>
+<li>以叹号 <code>!</code> 表示不忽略某个目录或文件</li>
+</ol></li>
+<li><a href="https://linux.die.net/man/7/glob">Globbing Patterns</a> 规范
+
+<ol>
+<li>星号 <code>*</code> 表示匹配零个或多个任意字符</li>
+<li>双星号 <code>**</code> 表示匹配 Repository 中任何位置的目录</li>
+</ol></li>
 </ul>
 
 <hr />
@@ -185,102 +201,108 @@
 <tr>
 <td align="left"><code>**/logs</code></td>
 <td align="left">匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/monday/foo.bar</code><br/>&emsp;<code>build/logs/debug.log</code></td>
-<td align="left"></td>
+<td align="left">在开头使用双星号 <code>**</code> 的 Pattern，可匹配 Repository 中任何位置的目录。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>**/logs/debug.log</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>build/logs/debug.log</code><br/>不匹配 :<br/>&emsp;<code>logs/build/debug.log</code></td>
-<td align="left"></td>
+<td align="left"><br/>在开头使用双星号 <code>**</code> 的 Pattern，根据文件的名称和父目录的名称来匹配 Repository 中文件。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><br/><code>*.log</code></td>
 <td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>foo.log</code><br/>&emsp;<code>.log</code><br/>&emsp;<code>logs/debug.log</code></td>
-<td align="left"></td>
+<td align="left">星号 <code>*</code> 是一个匹配零个或多个任意字符的通配符。</td>
 </tr>
 
 <tr>
 <td align="left"><br/><code>*.log</code><br/><code>!important.log</code></td>
-<td align="left"><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>trace.log</code><br/>不匹配 :<br>&emsp;<code>important.log</code><br>&emsp;<code>logs/important.log</code></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><br/><code>*.log</code><br/><code>!important/*.log</code><br/><code>trace.*</code></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>important/trace.log</code><br/>不匹配 :<br/>&emsp;<code>important/debug.log</code></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><br/><code>/debug.log</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>不匹配 :<br/>&emsp;<code>logs/debug.log</code></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><br/><code>debug.log</code></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug.log</code><br/>&emsp;<code>logs/debug.log</code></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><br/><code>debug?.log</code></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug0.log</code><br/>&emsp;<code>debugg.log</code><br/>不匹配 :<br/>&emsp;<code>debug10.log</code></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><br/><code>debug[0-9].log</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug0.log</code><br/>&emsp;<code>debug1.log</code><br/>不匹配 :<br/>&emsp;<code>debug10.log</code></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><br/><code>debug[01].log</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug0.log</code><br/>&emsp;<code>debug1.log</code><br/>不匹配 :<br/>&emsp;<code>debug2.log</code><br/>&emsp;<code>debug01.log</code></td>
 <td align="left"></td>
 </tr>
 
 <tr>
+<td align="left"><br/><code>debug[!01].log</code></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debug2.log</code><br/>不匹配 :<br/>&emsp;<code>debug0.log</code><br/>&emsp;<code>debug1.log</code><br/>&emsp;<code>debug01.log</code></td>
 <td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>debug[a-z].log</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>debuga.log</code><br/>&emsp;<code>debugb.log</code><br/>不匹配 :<br/>&emsp;<code>debug1.log</code></td>
 <td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>logs</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>logs</code><br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/latest/foo.bar</code><br/>&emsp;<code>build/logs</code><br/>&emsp;<code>build/logs/debug.log</code><br/></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>logs/</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/latest/foo.bar</code><br/>&emsp;<code>build/logs/foo.bar</code><br/>&emsp;<code>build/logs/latest/debug.log</code><br/></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>logs/</code><br/><code>!logs/important.log</code></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/important.log</code><br/></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>logs/**/debug.log</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>&emsp;<code>logs/monday/debug.log</code><br/>&emsp;<code>logs/monday/pm/debug.log</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>logs/*day/debug.log</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>logs/monday/debug.log</code><br/>&emsp;<code>logs/tuesday/debug.log</code><br/>不匹配 :<br/>&emsp;<code>logs/latest/debug.log</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><br/><code>logs/debug.log</code><br/></td>
+<td align="left"><br/>匹配 :<br/>&emsp;<code>logs/debug.log</code><br/>不匹配 :<br/>&emsp;<code>build/logs/debug.log</code></td>
 <td align="left"></td>
 </tr>
 </tbody>

@@ -13,15 +13,15 @@
     
     <item>
       <title>学习 Git 系列 : .gitignore 文件</title>
-      <link>https://monsterhxw.github.io/posts/gitignore-tutorials/</link>
+      <link>https://monsterhxw.github.io/posts/git-gitignore-tutorials/</link>
       <pubDate>Thu, 25 Jul 2019 17:37:00 +0800</pubDate>
       
-      <guid>https://monsterhxw.github.io/posts/gitignore-tutorials/</guid>
+      <guid>https://monsterhxw.github.io/posts/git-gitignore-tutorials/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Git 的忽略特殊文件 .gitignore&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;git-将工作副本中的每个文件视为以下三种情况之一&#34;&gt;Git 将工作副本中的每个文件视为以下三种情况之一：&lt;/h3&gt;
+&lt;h3 id=&#34;git-将工作副本中的每个文件视为以下三种情况&#34;&gt;Git 将工作副本中的每个文件视为以下三种情况&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;已跟踪的文件（tracked）&lt;/p&gt;
