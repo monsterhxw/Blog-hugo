@@ -113,8 +113,8 @@ slug: "git-gitignore-tutorials"
 	创建文件后，需要手动修改配置文件 git config 配置其位置
 	
 ```shell
-	$ touch ~/.gitignore
-	$ git config --global core.excludesFile ~/.gitignore
+$ touch ~/.gitignore
+$ git config --global core.excludesFile ~/.gitignore
 ```
 
 -  个人本地忽略规则（Personal Git Ignore Rules）
