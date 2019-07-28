@@ -127,6 +127,7 @@ int findMinimumPos(int arr[], int n) {
 }
 
 void selectionSort(int arr[], int n) {
+    // 从右到左循环遍历 n - 1 次数组
     while (n > 1) {
         int pos = findMinimumPos(arr, n);
         swap(arr, pos, n - 1);
@@ -145,7 +146,7 @@ void printArray(int arr[], int size) {
 
 // Driver program to test above functions
 int main() {
-    int arr[] = {7, 6, 5, 4, 3, 2, 1, 0};
+    int arr[] = {7, 6, 5, 0};
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("Array before sorting: \n");
     printArray(arr, n);
