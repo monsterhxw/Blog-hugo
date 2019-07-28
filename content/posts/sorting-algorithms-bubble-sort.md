@@ -8,7 +8,7 @@ slug: "sorting-algorithms-bubble-sort"
 
 > Sorting Algorithms : Bubble Sort
 
-### 冒泡排序的定义（Definition）
+### 冒泡排序的定义（Bubble Sort Definition）
 
 [Wikipedia 上对冒泡排序（Bubble Sort）描述](https://zh.wikipedia.org/wiki/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F)：
 
@@ -52,17 +52,17 @@ slug: "sorting-algorithms-bubble-sort"
 
 ------
 
-| Pass | Number of Comparisons |
+| Pass |&emsp;&emsp; Number of Comparisons |
 | ---- | --------------------- |
-| 1st  | (n - 1)               |
-| 2nd  | (n - 2)               |
-| 3rd  | (n - 3)               |
-| ...  | ...                   |
-| last | 1                     |
+| &emsp;`1st`&emsp;  |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`(n - 1)` |
+| &emsp;`2nd`&emsp;  |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`(n - 2)`|
+| &emsp;`3rd`&emsp;  | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`(n - 3)` |
+| &emsp;`...`&emsp;  | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`...` |
+| &emsp;`last`&emsp; | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`1`|
 
 ------
 
-总的比较次数：(n - 1) + (n - 2) + (n - 3) + ... + 1 = n(n - 1) / 2 接近等于 n^2，因此复杂度为 `O(n^2)`
+总的比较次数：`(n - 1)` + `(n - 2)` + `(n - 3)` +` ...` + `1` = `n(n - 1) / 2` 接近等于` n^2`，因此复杂度为 `O(n^2)`
 
 同时我们可以通过简单地观察循环次数来分析复杂性，因为算法使用了 2 个循环，因此复杂度为 `O(n * n )` =` O(n^2)`
 
@@ -106,9 +106,13 @@ slug: "sorting-algorithms-bubble-sort"
 
 ### 代码实现（Code Implementation）
 
-`C 语言实现`
+C 语言实现
+
+------
 
 ```c
+// C program for implementation of selection sort 
+
 #include <stdio.h>
 
 // 冒泡
@@ -168,6 +172,8 @@ int main() {
 优化冒泡排序算法代码：
 
 ```c
+// C program for implementation of selection sort 
+
 #include <stdio.h>
 
 // Optimized bubble sort in C

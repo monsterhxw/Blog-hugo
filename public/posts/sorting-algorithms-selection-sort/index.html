@@ -10,12 +10,12 @@
         content="Huangxuewei"/>
 
   
-  <meta name="description" content=" Sorting Algorithms : Bubble Sort
- 冒泡排序的定义（Bubble Sort Definition） Wikipedia 上对冒泡排序（Bubble Sort）描述：
-它一种简单的排序算法
- 通过重复地走访要排序的数列，一次比较两个元素
- 如果两个元素顺序错误，则进行交换
- 重复地进行走访数列直到没有再需要交换，说明该数列已经排序完成。
+  <meta name="description" content=" Sorting Algorithms : Selection Sort
+ 选择排序的定义（Selection Sort Definition） Wikipedia 上对选择排序（Selection Sort）描述：
+是一种简单直观的排序算法，是一种原地（in-place）的比较排序。
+ 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置
+ 再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾
+ 以此类推，直到所有元素均排序完毕。
  "/>
   
 
@@ -25,11 +25,11 @@
   
 
   
-  <link rel="canonical" href="https://monsterhxw.github.io/posts/sorting-algorithms-bubble-sort/"/>
+  <link rel="canonical" href="https://monsterhxw.github.io/posts/sorting-algorithms-selection-sort/"/>
 
   
 
-  <title>排序算法: 冒泡排序（Bubble Sort） &middot; Vivi&#39;s Blog</title>
+  <title>排序算法: 选择排序（Select Sort） &middot; Vivi&#39;s Blog</title>
 
   <link rel="shortcut icon" href="https://monsterhxw.github.io/images/favicon.ico"/>
   <link rel="stylesheet" href="https://monsterhxw.github.io/css/animate.min.css"/>
@@ -102,58 +102,44 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/posts/sorting-algorithms-bubble-sort/'>排序算法: 冒泡排序（Bubble Sort）</a></h2>
-          <span class="date">2019.07.24</span>
+          <h2><a href='/posts/sorting-algorithms-selection-sort/'>排序算法: 选择排序（Select Sort）</a></h2>
+          <span class="date">2019.07.28</span>
         </div>
         <div class="post_content markdown"><blockquote>
-<p>Sorting Algorithms : Bubble Sort</p>
+<p>Sorting Algorithms : Selection Sort</p>
 </blockquote>
 
-<h3 id="冒泡排序的定义-bubble-sort-definition">冒泡排序的定义（Bubble Sort Definition）</h3>
+<h3 id="选择排序的定义-selection-sort-definition">选择排序的定义（Selection Sort Definition）</h3>
 
-<p><a href="https://zh.wikipedia.org/wiki/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F">Wikipedia 上对冒泡排序（Bubble Sort）描述</a>：</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F">Wikipedia 上对选择排序（Selection Sort）描述</a>：</p>
 
-<p>它一种简单的排序算法</p>
-
-<ul>
-<li><p>通过重复地走访要排序的数列，一次比较两个元素</p></li>
-
-<li><p>如果两个元素顺序错误，则进行交换</p></li>
-
-<li><p>重复地进行走访数列直到没有再需要交换，说明该数列已经排序完成。</p></li>
-</ul>
-
-<p>这个算法的名字由来是因为越小的元素会经由交换慢慢&quot;浮&quot;到数列的顶端。</p>
-
-<h3 id="算法思路示例-example">算法思路示例（Example）</h3>
+<p>是一种简单直观的排序算法，是一种原地（in-place）的比较排序。</p>
 
 <ul>
-<li><p>从第 0 个索引开始，比较第 1 个和第 2 个元素。如果第 1 个元素大于第 2 个元素，则交换它们。</p></li>
+<li><p>首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置</p></li>
 
-<li><p>继续比较第 2 个和第 3 个元素。如果它们反序则交换它们。</p></li>
+<li><p>再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾</p></li>
 
-<li><p>重复上述过程续到最后一个元素。</p></li>
+<li><p>以此类推，直到所有元素均排序完毕。</p></li>
 </ul>
 
-<p><img src="/bubble-sort-work-1.png" alt="bubble-sort-work-1" /></p>
+<p>它具有 <code>O(n^2)</code> 时间复杂度，所以在有着大量数据的序列中执行效率低下，并且通常比与它相似的<code>插入排序（Insertion Sort）</code>执行效率更低。</p>
 
-<ul>
-<li><p>对于剩余的迭代，将执行相同的过程。每次迭代之后，未排序元素中最大的元素放在最后。</p></li>
+<p>但选择排序以其简单性著称，在某些情况下，特别是在计算机存储器（Computer Data Storage）数量有限的情况下，它比其他更复杂的算法具有性能优势。</p>
 
-<li><p>在每个迭代中，一直比较到最后一个还未排序的元素。</p></li>
+<h3 id="算法示例-example">算法示例（Example）</h3>
 
-<li><p>当所有未排序的元素被放置在正确的位置时，数组排序完成。</p></li>
-</ul>
+<ol>
+<li><p>从右到左循环遍历 n - 1 次列表，第一次循环列表时，从列表中找出未排序子列表中的<code>最大值（maximum）</code>的下标值 <code>pos</code>，然后通过交换下标值为 <code>pos</code> 元素和下标值为 <code>n -1</code> 元素（即把最大值存放到列表中的<code>已排序子列表</code>中）,然后列表长度 <code>n</code> 进行<code>减 1</code> 操作。</p>
 
-<p><img src="/bubble-sort-work-2.png" alt="bubble-sort-work-2" /></p>
+<p><img src="/selection-sort-work-1.png" alt="selection-sort-work-1" /></p></li>
 
-<p><img src="/bubble-sort-work-3.png" alt="bubble-sort-work-3" /></p>
+<li><p>对于剩余的循环，将执行<code>步骤 1</code> 相同的过程。直至到循环完第 <code>n - 1</code> 次时，列表排序完成</p>
 
-<p><img src="/bubble-sort-work-4.png" alt="bubble-sort-work-4" /></p>
+<p><img src="/selection-sort-work-2.png" alt="selection-sort-work-2" /></p></li>
+</ol>
 
 <h3 id="算法复杂度-algorithm-complexity">算法复杂度（Algorithm Complexity）</h3>
-
-<p>冒泡排序是最简单的排序算法之一，算法是采用 <code>2</code> 个循环。</p>
 
 <hr />
 
@@ -195,9 +181,9 @@
 
 <hr />
 
-<p>总的比较次数：<code>(n - 1)</code> + <code>(n - 2)</code> + <code>(n - 3)</code> +<code>...</code> + <code>1</code> = <code>n(n - 1) / 2</code> 接近等于<code>n^2</code>，因此复杂度为 <code>O(n^2)</code></p>
+<p>总的比较次数：<code>(n - 1)</code> + <code>(n - 2)</code> +<code>(n - 3)</code> + <code>...</code> + <code>1</code> = <code>n(n - 1) / 2</code> 接近等于 <code>n^2</code>，因此复杂度为 <code>O(n^2)</code></p>
 
-<p>同时我们可以通过简单地观察循环次数来分析复杂性，因为算法使用了 2 个循环，因此复杂度为 <code>O(n * n )</code> =<code>O(n^2)</code></p>
+<p>同时我们可以通过简单地观察循环次数来分析复杂性，因为算法使用了 <code>2</code> 个循环，因此复杂度为 <code>O(n * n )</code> =<code>O(n^2)</code></p>
 
 <p><br/></p>
 
@@ -208,21 +194,21 @@
 
 <p>如果我们想按升序排序数组，但数组已经是按照降序排列好的，那么最坏的情况就会发生。</p></li>
 
-<li><p>最好情况的复杂度：<code>O(n)</code></p>
+<li><p>最好情况的复杂度：<code>O(n^2)</code></p>
 
-<p>如果数组已经排序，那么就数组不需要排序。</p></li>
+<p>如果数组已经是排序完成。</p></li>
 
 <li><p>平均情况的复杂度：<code>O(n^2)</code></p>
 
 <p>当数组的元素是混乱的顺序（既不是升序也不是降序）时，就会发生这种情况。</p></li>
 </ul>
 
+<p>选择排序的时间复杂度在所有情况下都是相同的。在每一步，都必须找到最小元素（最大元素）并将其放在正确的位置。在未到循环结束之前，都不能确定最小元素（最大元素）。</p>
+
 <p>空间复杂度（Space Complexity）：</p>
 
 <ul>
-<li><p>因为需要一个临时变量 temp 用于交换，因此空间复杂度为 <code>O(1)</code></p></li>
-
-<li><p>在优化算法（下面会进行介绍）中，增加了标记（哨兵）变量 <code>swapped</code>，因此空间复杂度为 <code>O(2)</code></p></li>
+<li>因为需要一个临时变量 temp 用于交换，因此空间复杂度为 <code>O(1)</code></li>
 </ul>
 
 <p>稳定性（Stability）：</p>
@@ -233,17 +219,21 @@
 <pre><code>如果 a 原本在 b 前面，而 a = b，排序之后 a 仍然在 b 的前面，那么说明该排序是稳定的，反之说明该排序是不稳定的。
 </code></pre></li>
 
-<li><p>冒泡排序是稳定的（Stable）</p></li>
+<li><p>选择排序是不稳定的（Unstable）</p></li>
 </ul>
 
-<h3 id="冒泡排序的应用-bubble-sort-applications">冒泡排序的应用（Bubble Sort Applications）</h3>
+<h3 id="选择排序的应用-selection-sort-applications">选择排序的应用（Selection Sort Applications）</h3>
 
-<p>冒泡排序使用于以下的情况：</p>
+<p>选择排序使用于以下的情况：</p>
 
 <ul>
-<li><p>对于算法的复杂度并不重视。</p></li>
+<li><p>小量数据的列表。</p></li>
 
-<li><p>需要最少行的代码</p></li>
+<li><p>不需考虑交换元素的成本</p></li>
+
+<li><p>强制性需要检查所有的元素</p></li>
+
+<li><p>写入存储器的成本与闪存相同（与冒泡排序的 <code>O(n2)</code> 相比，选择排序的写入/交换次数为 <code>O(n)</code>）</p></li>
 </ul>
 
 <h3 id="代码实现-code-implementation">代码实现（Code Implementation）</h3>
@@ -255,28 +245,31 @@
 <pre><code class="language-c">// C program for implementation of selection sort 
 
 #include &lt;stdio.h&gt;
-
-// 冒泡
-void bubble(int arr[], int n) {
-    int i;
-    int temp;
-    // 一直比较到最后一个还未排序的元素,i 是从前往后循环
-    for (i = 0; i &lt; n - 1; i++) {
-        // 前一个大于后一个，则交换
-        if (arr[i] &gt; arr[i + 1]) {
-            temp = arr[i];
-            arr[i] = arr[i + 1];
-            arr[i + 1] = temp;
-        }
-    }
+void swap(int arr[], int i, int j) {
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
 }
 
-// 冒泡排序
-void bubbleSort(int arr[], int n) {
+// Find the maximum element position in unsorted array
+int findMinimumPos(int arr[], int n) {
+    int max = arr[0];
+    int pos = 0;
     int i;
-    // 从第 n - 1 次到第 1 次冒泡
-    for (i = n; i &gt;= 1; i--) {
-        bubble(arr, i);
+    for (i = 1; i &lt; n; i++) {
+        if (arr[i] &gt; max) {
+            max = arr[i];
+            pos = i;
+        }
+    }
+    return pos;
+}
+
+void selectionSort(int arr[], int n) {
+    while (n &gt; 1) {
+        int pos = findMinimumPos(arr, n);
+        swap(arr, pos, n - 1);
+        n--;
     }
 }
 
@@ -291,70 +284,11 @@ void printArray(int arr[], int size) {
 
 // Driver program to test above functions
 int main() {
-    int arr[] = {-2, 45, 0, 11, -9};
+    int arr[] = {7, 6, 5, 4, 3, 2, 1, 0};
     int n = sizeof(arr) / sizeof(arr[0]);
     printf(&quot;Array before sorting: \n&quot;);
     printArray(arr, n);
-    bubbleSort(arr, n);
-    printf(&quot;\nArray after sorting: \n&quot;);
-    printArray(arr, n);
-    return 0;
-}
-</code></pre>
-
-<hr />
-
-<h3 id="冒泡排序的优化-optimized-bubble-sort">冒泡排序的优化（Optimized Bubble Sort）</h3>
-
-<ul>
-<li><p>在上面的代码中，即使数组已经完成排序，也会继续剩余的迭代然后进行元素比较，导致增加了执行时间。</p></li>
-
-<li><p>所以可以通过引入标记（哨兵）变量  <code>swapped</code>  来优化代码。在每次迭代之后，如果没有发生交换（即 <code>swapped</code> 为 <code>FALSE</code>），说明了此数列已经是有序的，则不需要执行进一步的循环。</p></li>
-</ul>
-
-<p>优化冒泡排序算法代码：</p>
-
-<pre><code class="language-c">// C program for implementation of selection sort 
-
-#include &lt;stdio.h&gt;
-
-// Optimized bubble sort in C
-void bubbleSort(int arr[], int n) {
-    int i, j, temp;
-    // The variable &quot;swapped&quot; is introduced for optimization.
-    int swapped = 1;
-    // 外循环规定了排序次数，从第 1 次到第 n - 1 次
-    for (i = 0; i &lt; n - 1 &amp;&amp; swapped; i++) {
-        swapped = 0;
-        // 内循环规定了剩余未排序元素,j 是从前往后循环
-        for (j = 0; j &lt; n - i - 1; j++) {
-            // 前一个大于后一个，则交换
-            if (arr[j] &gt; arr[j + 1]) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                swapped = 1;
-            }
-        }
-    }
-}
-
-// Function to print an array
-void printArray(int arr[], int size) {
-    int i;
-    for (i = 0; i &lt; size; i++) {
-        printf(&quot;%d &quot;, arr[i]);
-    }
-    printf(&quot;\n&quot;);
-}
-
-// Driver program to test above functions
-int main() {
-    int arr[] = {-2, 45, 0, 11, -9};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    printf(&quot;Array before sorting: \n&quot;);
-    printArray(arr, n);
-    bubbleSort(arr, n);
+    selectionSort(arr, n);
     printf(&quot;\nArray after sorting: \n&quot;);
     printArray(arr, n);
     return 0;
@@ -366,13 +300,13 @@ int main() {
 <h3 id="参考-references">参考（References）</h3>
 
 <ol>
-<li><p><a href="https://www.programiz.com/dsa/bubble-sort">Programiz - Bubble Sort Algorithm : https://www.programiz.com/dsa/bubble-sort</a></p></li>
+<li><p><a href="https://www.programiz.com/dsa/selection-sort">Programiz - Selection Sort Algorithm : https://www.programiz.com/dsa/selection-sort</a></p></li>
 
-<li><p><a href="https://www.geeksforgeeks.org/bubble-sort/">GeeksforGeeks - Bubble Sort : https://www.geeksforgeeks.org/bubble-sort/</a></p></li>
+<li><p><a href="https://www.geeksforgeeks.org/selection-sort/">GeeksforGeeks - Selection Sort : https://www.geeksforgeeks.org/selection-sort/</a></p></li>
 
 <li><p><a href="https://www.bilibili.com/video/av9830014">B 站 UP 主 - 正月点灯笼 - [算法教程] 几种经典排序的实现 : https://www.bilibili.com/video/av9830014 </a></p></li>
 
-<li><p><a href="https://en.wikipedia.org/wiki/Bubble_sort">Wikipedia - 冒泡排序 : https://en.wikipedia.org/wiki/Bubble_sort</a></p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Selection_sort">Wikipedia - Selection sort : https://en.wikipedia.org/wiki/Selection_sort</a></p></li>
 </ol></div>
         <div class="post_footer">
           
