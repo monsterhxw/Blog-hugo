@@ -96,7 +96,7 @@ slug: "sorting-algorithms-selection-sort"
 
 - 写入存储器的成本与闪存相同（与冒泡排序的 `O(n2)` 相比，选择排序的写入/交换次数为 `O(n)`）
 
-### 代码实现（Code Implementation）
+### 代码实现（Code and Implementation）
 
 C 语言实现
 

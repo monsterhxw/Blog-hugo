@@ -104,7 +104,7 @@ slug: "sorting-algorithms-bubble-sort"
 
 - 需要最少行的代码
 
-### 代码实现（Code Implementation）
+### 代码实现（Code and Implementation）
 
 C 语言实现
 
