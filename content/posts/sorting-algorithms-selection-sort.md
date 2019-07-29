@@ -12,7 +12,7 @@ slug: "sorting-algorithms-selection-sort"
 
 [Wikipedia 上对选择排序（Selection Sort）描述](https://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)：
 
-是一种简单直观的排序算法，是一种原地（in-place）的比较排序。
+是一种简单直观的排序算法，是一种原地（[in-place](https://en.wikipedia.org/wiki/In-place_algorithm)）的比较排序。
 
 - 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置
 

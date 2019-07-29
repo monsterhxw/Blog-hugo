@@ -25,7 +25,7 @@
 
 &lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F&#34;&gt;Wikipedia 上对插入排序（Insertion Sort）描述&lt;/a&gt;：&lt;/p&gt;
 
-&lt;p&gt;是一种简单直观的排序算法，可以一次构建出项最终排序数组（或列表），是一种原地（in-place）的比较排序。&lt;/p&gt;
+&lt;p&gt;是一种简单直观的排序算法，可以一次构建出项最终排序数组（或列表），是一种原地（&lt;a href=&#34;https://en.wikipedia.org/wiki/In-place_algorithm&#34;&gt;in-place&lt;/a&gt;）的比较排序。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;创建已排序的子列表，对于未排序元素，在已排序子列表中从右向左扫描，找到相应位置并插入&lt;/p&gt;&lt;/li&gt;
@@ -50,7 +50,7 @@
 
 &lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F&#34;&gt;Wikipedia 上对选择排序（Selection Sort）描述&lt;/a&gt;：&lt;/p&gt;
 
-&lt;p&gt;是一种简单直观的排序算法，是一种原地（in-place）的比较排序。&lt;/p&gt;
+&lt;p&gt;是一种简单直观的排序算法，是一种原地（&lt;a href=&#34;https://en.wikipedia.org/wiki/In-place_algorithm&#34;&gt;in-place&lt;/a&gt;）的比较排序。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置&lt;/p&gt;&lt;/li&gt;
