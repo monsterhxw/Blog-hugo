@@ -6,10 +6,35 @@
     <description>Recent content in Sorting Algorithm on Vivi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 28 Jul 2019 23:06:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jul 2019 12:19:00 +0800</lastBuildDate>
     
 	<atom:link href="https://monsterhxw.github.io/tags/sorting-algorithm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>排序算法: 插入排序（Insertion Sort）</title>
+      <link>https://monsterhxw.github.io/posts/sorting-algorithms-insertion-sort/</link>
+      <pubDate>Mon, 29 Jul 2019 12:19:00 +0800</pubDate>
+      
+      <guid>https://monsterhxw.github.io/posts/sorting-algorithms-insertion-sort/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Sorting Algorithms : Insertion Sort&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;插入排序的定义-insertion-sort-definition&#34;&gt;插入排序的定义（Insertion Sort Definition）&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F&#34;&gt;Wikipedia 上对插入排序（Insertion Sort）描述&lt;/a&gt;：&lt;/p&gt;
+
+&lt;p&gt;是一种简单直观的排序算法，可以一次构建出项最终排序数组（或列表），是一种原地（in-place）的比较排序。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;创建已排序的子列表，对于未排序元素，在已排序子列表中从右向左扫描，找到相应位置并插入&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在从右向左扫描过程中，需要反复把已排序元素逐步向右挪位，为最新元素提供插入空间&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;以此类推，直到所有元素均排序完毕。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     
     <item>
       <title>排序算法: 选择排序（Select Sort）</title>
