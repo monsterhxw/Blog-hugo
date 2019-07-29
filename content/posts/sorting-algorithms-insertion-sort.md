@@ -46,33 +46,17 @@ slug: "sorting-algorithms-insertion-sort"
 
 ### 算法复杂度（Algorithm Complexity）
 
-------
-
-| Pass |&emsp;&emsp; Number of Comparisons |
-| ---- | --------------------- |
-| &emsp;`1st`&emsp;  |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`(n - 1)` |
-| &emsp;`2nd`&emsp;  |&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`(n - 2)`|
-| &emsp;`3rd`&emsp;  | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`(n - 3)` |
-| &emsp;`...`&emsp;  | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`...` |
-| &emsp;`last`&emsp; | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`1`|
-
-------
-
-总的比较次数：`(n - 1)` + `(n - 2)` +` (n - 3)` + `...` + `1` = `n(n - 1) / 2` 接近等于 `n^2`，因此复杂度为 `O(n^2)`
-
-同时我们可以通过简单地观察循环次数来分析复杂性，因为算法使用了 `2` 个循环，因此复杂度为 `O(n * n )` =` O(n^2)`
-
-<br/>
-
 时间复杂度（Time Complexities）：
 
 - 最坏情况的复杂度：`O(n^2)`
 
-	如果我们想按升序排序数组，但数组已经是按照降序排列好的，那么最坏的情况就会发生。
+	假设，数组按升序排序，但目的是为了对列表进行降序排序。在这种情况下，那么最坏的情况就会发生。
 	
-- 最好情况的复杂度：`O(n^2)`
+	必须将每个元素与其他元素进行比较，因此，对于每次第 `n` 个元素，进行 `(n - 1)` 次比较，所以总的比较数 为 `n * (n - 1)`，约等于 `n^2`
+	
+- 最好情况的复杂度：`O(n)`
 
-	如果数组已经是排序完成。
+	当列表已经是有序时，外循环运行 `n` 次，而内循环根本不运行。所以，只有 `n` 个比较。因此，复杂度是线性的。
 
 - 平均情况的复杂度：`O(n^2)`
 
@@ -82,7 +66,7 @@ slug: "sorting-algorithms-insertion-sort"
 
 空间复杂度（Space Complexity）：
 
-- 因为需要一个临时变量 temp 用于交换，因此空间复杂度为 `O(1)`
+- 因为需要一个临时变量 key ，因此空间复杂度为 `O(1)`
 
 稳定性（Stability）：
 
@@ -90,19 +74,15 @@ slug: "sorting-algorithms-insertion-sort"
 
 		如果 a 原本在 b 前面，而 a = b，排序之后 a 仍然在 b 的前面，那么说明该排序是稳定的，反之说明该排序是不稳定的。
 
-- 选择排序是不稳定的（Unstable）
+- 插入排序是稳定的（Stable）
 
-### 选择排序的应用（Selection Sort Applications）
+### 插入排序的应用（Insertion Sort Applications）
 
-选择排序使用于以下的情况：
+插入排序使用于以下的情况：
 
-- 小量数据的列表。
+- 需要排序的列表中的元素数量很少
 
-- 不需考虑交换元素的成本
-
-- 强制性需要检查所有的元素
-
-- 写入存储器的成本与闪存相同（与冒泡排序的 `O(n2)` 相比，选择排序的写入/交换次数为 `O(n)`）
+- 需要排序的列表中，只有少数元素需要排序
 
 ### 代码实现（Code and Implementation）
 
@@ -111,54 +91,45 @@ C 语言实现
 ------
 
 ```c
-// C program for implementation of selection sort 
+// C program for implementation of insertion sort 
 
 #include <stdio.h>
-void swap(int arr[], int i, int j) {
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+
+// n 为第几个元素
+void insert(int arr[], int n) {
+    int key = arr[n];
+    int i = n;
+    while (i > 0 && arr[i - 1] > key) {
+        arr[i] = arr[i - 1];
+        i--;
+    }
+    arr[i] = key;
 }
 
-// Find the maximum element position in unsorted array
-int findMaximumPos(int arr[], int n) {
-    int max = arr[0];
-    int pos = 0;
+void insertionSort(int arr[], int n) {
     int i;
+    // 认为第一个元素是在已排序子列表中，从第二个元素开始，将元素插入到已排序子列表中
     for (i = 1; i < n; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-            pos = i;
-        }
-    }
-    return pos;
-}
-
-void selectionSort(int arr[], int n) {
-    // 从右到左循环遍历 n - 1 次数组
-    while (n > 1) {
-        int pos = findMaximumPos(arr, n);
-        swap(arr, pos, n - 1);
-        n--;
+        insert(arr, i);
     }
 }
 
-// Function to print an array
-void printArray(int arr[], int size) {
+// A utility function to print an array of size n
+void printArray(int arr[], int n) {
     int i;
-    for (i = 0; i < size; i++) {
+    for (i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
 }
 
-// Driver program to test above functions
+// Driver program to test insertion sort
 int main() {
     int arr[] = {7, 6, 5, 0};
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("Array before sorting: \n");
     printArray(arr, n);
-    selectionSort(arr, n);
+    insertionSort(arr, n);
     printf("\nArray after sorting: \n");
     printArray(arr, n);
     return 0;
@@ -169,11 +140,9 @@ int main() {
 
 ### 参考（References）
 
-1. [Programiz - Selection Sort Algorithm : https://www.programiz.com/dsa/selection-sort](https://www.programiz.com/dsa/selection-sort)
+1. [Programiz - Insertion Sort Algorithm : https://www.programiz.com/dsa/insertion-sort](https://www.programiz.com/dsa/insertion-sort)
 
-2. [GeeksforGeeks - Selection Sort : https://www.geeksforgeeks.org/selection-sort/](https://www.geeksforgeeks.org/selection-sort/)
+2. [B 站 UP 主 - 正月点灯笼 - [算法教程] 几种经典排序的实现 : https://www.bilibili.com/video/av9830014 ](https://www.bilibili.com/video/av9830014)
 
-3. [B 站 UP 主 - 正月点灯笼 - [算法教程] 几种经典排序的实现 : https://www.bilibili.com/video/av9830014 ](https://www.bilibili.com/video/av9830014)
-
-4. [Wikipedia - Selection sort : https://en.wikipedia.org/wiki/Selection_sort](https://en.wikipedia.org/wiki/Selection_sort)
+3. [Wikipedia - Insertion sort : https://en.wikipedia.org/wiki/Insertion_sort](https://en.wikipedia.org/wiki/Insertion_sort)
 

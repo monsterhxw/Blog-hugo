@@ -149,62 +149,18 @@
 
 <h3 id="算法复杂度-algorithm-complexity">算法复杂度（Algorithm Complexity）</h3>
 
-<hr />
-
-<table>
-<thead>
-<tr>
-<th>Pass</th>
-<th>&emsp;&emsp; Number of Comparisons</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>&emsp;<code>1st</code>&emsp;</td>
-<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<code>(n - 1)</code></td>
-</tr>
-
-<tr>
-<td>&emsp;<code>2nd</code>&emsp;</td>
-<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<code>(n - 2)</code></td>
-</tr>
-
-<tr>
-<td>&emsp;<code>3rd</code>&emsp;</td>
-<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<code>(n - 3)</code></td>
-</tr>
-
-<tr>
-<td>&emsp;<code>...</code>&emsp;</td>
-<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<code>...</code></td>
-</tr>
-
-<tr>
-<td>&emsp;<code>last</code>&emsp;</td>
-<td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<code>1</code></td>
-</tr>
-</tbody>
-</table>
-
-<hr />
-
-<p>总的比较次数：<code>(n - 1)</code> + <code>(n - 2)</code> +<code>(n - 3)</code> + <code>...</code> + <code>1</code> = <code>n(n - 1) / 2</code> 接近等于 <code>n^2</code>，因此复杂度为 <code>O(n^2)</code></p>
-
-<p>同时我们可以通过简单地观察循环次数来分析复杂性，因为算法使用了 <code>2</code> 个循环，因此复杂度为 <code>O(n * n )</code> =<code>O(n^2)</code></p>
-
-<p><br/></p>
-
 <p>时间复杂度（Time Complexities）：</p>
 
 <ul>
 <li><p>最坏情况的复杂度：<code>O(n^2)</code></p>
 
-<p>如果我们想按升序排序数组，但数组已经是按照降序排列好的，那么最坏的情况就会发生。</p></li>
+<p>假设，数组按升序排序，但目的是为了对列表进行降序排序。在这种情况下，那么最坏的情况就会发生。</p>
 
-<li><p>最好情况的复杂度：<code>O(n^2)</code></p>
+<p>必须将每个元素与其他元素进行比较，因此，对于每次第 <code>n</code> 个元素，进行 <code>(n - 1)</code> 次比较，所以总的比较数 为 <code>n * (n - 1)</code>，约等于 <code>n^2</code></p></li>
 
-<p>如果数组已经是排序完成。</p></li>
+<li><p>最好情况的复杂度：<code>O(n)</code></p>
+
+<p>当列表已经是有序时，外循环运行 <code>n</code> 次，而内循环根本不运行。所以，只有 <code>n</code> 个比较。因此，复杂度是线性的。</p></li>
 
 <li><p>平均情况的复杂度：<code>O(n^2)</code></p>
 
@@ -216,7 +172,7 @@
 <p>空间复杂度（Space Complexity）：</p>
 
 <ul>
-<li>因为需要一个临时变量 temp 用于交换，因此空间复杂度为 <code>O(1)</code></li>
+<li>因为需要一个临时变量 key ，因此空间复杂度为 <code>O(1)</code></li>
 </ul>
 
 <p>稳定性（Stability）：</p>
@@ -227,21 +183,17 @@
 <pre><code>如果 a 原本在 b 前面，而 a = b，排序之后 a 仍然在 b 的前面，那么说明该排序是稳定的，反之说明该排序是不稳定的。
 </code></pre></li>
 
-<li><p>选择排序是不稳定的（Unstable）</p></li>
+<li><p>插入排序是稳定的（Stable）</p></li>
 </ul>
 
-<h3 id="选择排序的应用-selection-sort-applications">选择排序的应用（Selection Sort Applications）</h3>
+<h3 id="插入排序的应用-insertion-sort-applications">插入排序的应用（Insertion Sort Applications）</h3>
 
-<p>选择排序使用于以下的情况：</p>
+<p>插入排序使用于以下的情况：</p>
 
 <ul>
-<li><p>小量数据的列表。</p></li>
+<li><p>需要排序的列表中的元素数量很少</p></li>
 
-<li><p>不需考虑交换元素的成本</p></li>
-
-<li><p>强制性需要检查所有的元素</p></li>
-
-<li><p>写入存储器的成本与闪存相同（与冒泡排序的 <code>O(n2)</code> 相比，选择排序的写入/交换次数为 <code>O(n)</code>）</p></li>
+<li><p>需要排序的列表中，只有少数元素需要排序</p></li>
 </ul>
 
 <h3 id="代码实现-code-and-implementation">代码实现（Code and Implementation）</h3>
@@ -250,54 +202,45 @@
 
 <hr />
 
-<pre><code class="language-c">// C program for implementation of selection sort 
+<pre><code class="language-c">// C program for implementation of insertion sort 
 
 #include &lt;stdio.h&gt;
-void swap(int arr[], int i, int j) {
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+
+// n 为第几个元素
+void insert(int arr[], int n) {
+    int key = arr[n];
+    int i = n;
+    while (i &gt; 0 &amp;&amp; arr[i - 1] &gt; key) {
+        arr[i] = arr[i - 1];
+        i--;
+    }
+    arr[i] = key;
 }
 
-// Find the maximum element position in unsorted array
-int findMaximumPos(int arr[], int n) {
-    int max = arr[0];
-    int pos = 0;
+void insertionSort(int arr[], int n) {
     int i;
+    // 认为第一个元素是在已排序子列表中，从第二个元素开始，将元素插入到已排序子列表中
     for (i = 1; i &lt; n; i++) {
-        if (arr[i] &gt; max) {
-            max = arr[i];
-            pos = i;
-        }
-    }
-    return pos;
-}
-
-void selectionSort(int arr[], int n) {
-    // 从右到左循环遍历 n - 1 次数组
-    while (n &gt; 1) {
-        int pos = findMaximumPos(arr, n);
-        swap(arr, pos, n - 1);
-        n--;
+        insert(arr, i);
     }
 }
 
-// Function to print an array
-void printArray(int arr[], int size) {
+// A utility function to print an array of size n
+void printArray(int arr[], int n) {
     int i;
-    for (i = 0; i &lt; size; i++) {
+    for (i = 0; i &lt; n; i++) {
         printf(&quot;%d &quot;, arr[i]);
     }
     printf(&quot;\n&quot;);
 }
 
-// Driver program to test above functions
+// Driver program to test insertion sort
 int main() {
     int arr[] = {7, 6, 5, 0};
     int n = sizeof(arr) / sizeof(arr[0]);
     printf(&quot;Array before sorting: \n&quot;);
     printArray(arr, n);
-    selectionSort(arr, n);
+    insertionSort(arr, n);
     printf(&quot;\nArray after sorting: \n&quot;);
     printArray(arr, n);
     return 0;
@@ -309,13 +252,11 @@ int main() {
 <h3 id="参考-references">参考（References）</h3>
 
 <ol>
-<li><p><a href="https://www.programiz.com/dsa/selection-sort">Programiz - Selection Sort Algorithm : https://www.programiz.com/dsa/selection-sort</a></p></li>
-
-<li><p><a href="https://www.geeksforgeeks.org/selection-sort/">GeeksforGeeks - Selection Sort : https://www.geeksforgeeks.org/selection-sort/</a></p></li>
+<li><p><a href="https://www.programiz.com/dsa/insertion-sort">Programiz - Insertion Sort Algorithm : https://www.programiz.com/dsa/insertion-sort</a></p></li>
 
 <li><p><a href="https://www.bilibili.com/video/av9830014">B 站 UP 主 - 正月点灯笼 - [算法教程] 几种经典排序的实现 : https://www.bilibili.com/video/av9830014 </a></p></li>
 
-<li><p><a href="https://en.wikipedia.org/wiki/Selection_sort">Wikipedia - Selection sort : https://en.wikipedia.org/wiki/Selection_sort</a></p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Insertion_sort">Wikipedia - Insertion sort : https://en.wikipedia.org/wiki/Insertion_sort</a></p></li>
 </ol></div>
         <div class="post_footer">
           
