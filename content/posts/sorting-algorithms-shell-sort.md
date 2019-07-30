@@ -36,15 +36,15 @@ slug: "sorting-algorithms-shell-sort"
 	
 	对每个子列表分别进行插入排序
 	
-	![shell-sort-work-1](/shell-sort-work-1.png)
+	![shell-sort-work-1](/shell-sort/shell-sort-work-1.png)
 	
 2. 然后缩小间隔 `gap` ，如取 `gap  = gap / 2`，重复`步骤 1`，划分和排序子列表
 	
-	![shell-sort-work-2](/shell-sort-work-2.png)
+	![shell-sort-work-2](/shell-sort/shell-sort-work-2.png)
 	
 3. 直至 `gap = 1` 时，对整个列表进行插入排序
 	
-	![shell-sort-work-3](/shell-sort-work-3.png)
+	![shell-sort-work-3](/shell-sort/shell-sort-work-3.png)
 
 ### 算法复杂度（Algorithm Complexity）
 

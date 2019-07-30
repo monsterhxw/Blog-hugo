@@ -32,17 +32,17 @@ slug: "sorting-algorithms-insertion-sort"
 	
 	取第二个元素赋值给 `key` ，然后比较 `key` 与第一个元素，如果第一个元素大于 `key`，则将 `key` 插入到第一个元素前面。
 
-	![insertion-sort-work-1](/insertion-sort-work-1.png)
+	![insertion-sort-work-1](/insertion-sort/insertion-sort-work-1.png)
 
 2. 取第三个元素并将其与左侧的元素进行比较。将它放在比它小的元素后面。如果没有小于它的元素，则将其放在数组的开头。
 	
-	![insertion-sort-work-2](/insertion-sort-work-2.png)
+	![insertion-sort-work-2](/insertion-sort/insertion-sort-work-2.png)
 	
 3. 以此类推，将每个未排序的元素放在正确的位置。 
 
-	![insertion-sort-work-3](/insertion-sort-work-3.png)
+	![insertion-sort-work-3](/insertion-sort/insertion-sort-work-3.png)
 	
-	![insertion-sort-work-4](/insertion-sort-work-4.png)
+	![insertion-sort-work-4](/insertion-sort/insertion-sort-work-4.png)
 
 ### 算法复杂度（Algorithm Complexity）
 

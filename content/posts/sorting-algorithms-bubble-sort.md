@@ -32,7 +32,7 @@ slug: "sorting-algorithms-bubble-sort"
 
 - 重复上述过程续到最后一个元素。
 
-![bubble-sort-work-1](/bubble-sort-work-1.png)
+![bubble-sort-work-1](/bubble-sort/bubble-sort-work-1.png)
 
 - 对于剩余的迭代，将执行相同的过程。每次迭代之后，未排序元素中最大的元素放在最后。
 
@@ -40,11 +40,11 @@ slug: "sorting-algorithms-bubble-sort"
 
 - 当所有未排序的元素被放置在正确的位置时，数组排序完成。
 
-![bubble-sort-work-2](/bubble-sort-work-2.png)
+![bubble-sort-work-2](/bubble-sort/bubble-sort-work-2.png)
 
-![bubble-sort-work-3](/bubble-sort-work-3.png)
+![bubble-sort-work-3](/bubble-sort/bubble-sort-work-3.png)
 
-![bubble-sort-work-4](/bubble-sort-work-4.png)
+![bubble-sort-work-4](/bubble-sort/bubble-sort-work-4.png)
 
 ### 算法复杂度（Algorithm Complexity）
 
