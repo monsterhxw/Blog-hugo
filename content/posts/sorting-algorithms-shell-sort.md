@@ -1,7 +1,7 @@
 ---
 title: "排序算法: 希尔排序（Shell Sort）"
 date: 2019-07-30T00:03:00+08:00
-draft: true
+draft: false
 tags: ["排序算法", "Sorting Algorithm"]
 slug: "sorting-algorithms-shell-sort"
 ---
@@ -22,41 +22,51 @@ slug: "sorting-algorithms-shell-sort"
 
 Shell Sort 的时间复杂度取决于采用的间隔序列。
 
+间隔序列（Gap Sequences）的取法：
+
+- 最初 Donald Shell 提出取间隔（增量）序列（Gap Sequences）为 {n / 2, (n / 2) / 2, ..., 1 }
+
+- Knuth 提出取间隔（增量）序列递推式（Gap Sequences）为 h(1) = 1, ..,  h(i) = 3 * h(i - 1) + 1
+
+- Hibbard 间隔（增量）序列递推式：h(1) = 1, h(i) = 2 * h(i - 1) + 1 
+
 ### 算法示例（Example）
 
-1. 以列表中的第一个元素作为已排序子列表，其余元素作为未排序子列表。
+1. 排序列表共有  `n` 个元素，取整数 `gap(gap < n)` 作为间隔，将列表分成 `gap` 个子列表，所有距离为 `gap` 的元素放在同一个子列表中。
 	
-	取第二个元素赋值给 `key` ，然后比较 `key` 与第一个元素，如果第一个元素大于 `key`，则将 `key` 插入到第一个元素前面。
-
-	![insertion-sort-work-1](/insertion-sort-work-1.png)
-
-2. 取第三个元素并将其与左侧的元素进行比较。将它放在比它小的元素后面。如果没有小于它的元素，则将其放在数组的开头。
+	对每个子列表分别进行插入排序
 	
-	![insertion-sort-work-2](/insertion-sort-work-2.png)
+	![shell-sort-work-1](/shell-sort-work-1.png)
 	
-3. 以此类推，将每个未排序的元素放在正确的位置。 
-
-	![insertion-sort-work-3](/insertion-sort-work-3.png)
+2. 然后缩小间隔 `gap` ，如取 `gap  = gap / 2`，重复`步骤 1`，划分和排序子列表
 	
-	![insertion-sort-work-4](/insertion-sort-work-4.png)
+	![shell-sort-work-2](/shell-sort-work-2.png)
+	
+3. 直至 `gap = 1` 时，对整个列表进行插入排序
+	
+	![shell-sort-work-3](/shell-sort-work-3.png)
 
 ### 算法复杂度（Algorithm Complexity）
 
 时间复杂度（Time Complexities）：
 
-- 最坏情况的复杂度：`O(n^2)`
+- 最坏情况的复杂度：小于或等于 `$\displaystyle O(n^{2})$`
 
-	假设，数组按升序排序，但目的是为了对列表进行降序排序。在这种情况下，那么最坏的情况就会发生。
+	希尔排序的最坏情况时间复杂度总是小于或等于 `$\displaystyle O(n^{2})$`
 	
-	必须将每个元素与其他元素进行比较，因此，对于每次第 `n` 个元素，进行 `(n - 1)` 次比较，所以总的比较数 为 `n * (n - 1)`，约等于 `n^2`
+	希尔排序的最坏情况时间复杂度与取间隔序列策略有关
 	
-- 最好情况的复杂度：`O(n)`
+- 最好情况的复杂度：`$\displaystyle O\left(n\log^{2}n\right)$`
 
-	当列表已经是有序时，外循环运行 `n` 次，而内循环根本不运行。所以，只有 `n` 个比较。因此，复杂度是线性的。
+	当数组已经排序时，每个间隔（或增量）的总比较数等于数组的大小。
 
-- 平均情况的复杂度：`O(n^2)`
+- 平均情况的复杂度：`$\displaystyle O\left(n\log^{2}n\right)$`
 
-	当数组的元素是混乱的顺序（既不是升序也不是降序）时，就会发生这种情况。
+	希尔排序的平均情况的复杂度与取间隔序列策略有关，在 `$\displaystyle O(n^{1.25})$`附近。
+
+时间复杂度取决于所选的间隔序列。对于所选择的不同增量序列，上述复杂度不同。最佳增量序列未知。
+
+<br/>
 
 空间复杂度（Space Complexity）：
 
@@ -68,15 +78,17 @@ Shell Sort 的时间复杂度取决于采用的间隔序列。
 
 		如果 a 原本在 b 前面，而 a = b，排序之后 a 仍然在 b 的前面，那么说明该排序是稳定的，反之说明该排序是不稳定的。
 
-- 插入排序是稳定的（Stable）
+- 希尔排序是不稳定的（Unstable)，因为希尔排序算法不检查位于间隔之间的元素。
 
-### 插入排序的应用（Insertion Sort Applications）
+### 希尔排序的应用（Shell Sort Applications）
 
-插入排序使用于以下的情况：
+希尔排序使用于以下的情况：
 
-- 需要排序的列表中的元素数量很少
+- 对于调用堆栈是一种开销的行为
 
-- 需要排序的列表中，只有少数元素需要排序
+- 递归超出限制
+
+- 当值靠近的元素在间隔很远时，插入排序不能很好地执行。 希尔排序是有利于减少关闭元素之间的距离，因此会减少执行的交换次数。
 
 ### 代码实现（Code and Implementation）
 
@@ -115,12 +127,16 @@ void insertionSort(int arr[], int n, int gap) {
 }
 
 void shellSort(int arr[], int n) {
-    int gap = n / 2;
+    int gap = 1;
+    // Knuth增量序列递推式：h(1) = 1, h(i) = 3 * h(i-1) + 1
+    while (gap < n) {
+        gap = gap * 3 + 1;
+    }
     // 间隔增量 gap 每次变小，直到为 1
     while (gap > 0) {
         // 进行插入排序，从每个分组的第 gap 个元素开始，而不是从它的第 1 个元素开始
         insertionSort(arr, n, gap);
-        gap /= 2;
+        gap = (gap - 1) / 3;
     }
 }
 
@@ -134,7 +150,7 @@ void printArray(int arr[], int n) {
 }
 
 int main() {
-    int arr[] = {12, 34, 54, 2, 3};
+    int arr[] = {14, 18, 19, 37, 23, 40, 29, 30, 11};
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("Array before sorting: \n");
     printArray(arr, n);
@@ -149,9 +165,9 @@ int main() {
 
 ### 参考（References）
 
-1. [Programiz - Insertion Sort Algorithm : https://www.programiz.com/dsa/insertion-sort](https://www.programiz.com/dsa/insertion-sort)
+1. [Programiz - Shell Sort Algorithm : https://www.programiz.com/dsa/shell-sort](https://www.programiz.com/dsa/shell-sort)
 
-2. [B 站 UP 主 - 正月点灯笼 - [算法教程] 几种经典排序的实现 : https://www.bilibili.com/video/av9830014 ](https://www.bilibili.com/video/av9830014)
+2. [GeeksForGeeks - Shell Sort : https://www.geeksforgeeks.org/shellsort/ ](https://www.geeksforgeeks.org/shellsort/ )
 
-3. [Wikipedia - Insertion sort : https://en.wikipedia.org/wiki/Insertion_sort](https://en.wikipedia.org/wiki/Insertion_sort)
+3. [Wikipedia - Shell sort : https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/wiki/Shellsort)
 

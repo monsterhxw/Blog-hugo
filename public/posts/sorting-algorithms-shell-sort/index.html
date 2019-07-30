@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Huangxuewei"/>
+
+  
+  <meta name="description" content=" Sorting Algorithms : Shell Sort
+ 希尔排序的定义（Shell Sort Definition） Wikipedia 上对希尔排序（Shell Sort）描述：
+希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本，是一种原地（in-place）的比较排序。
+ 首先对存在间隔的元素进行排序，然后逐渐减小要比较的元素之间的间隙
+ 从间隔大的元素开始，这样会比其他简单的比较排序更快地将未排序的元素移动到正确的位置。
+ "/>
+  
+
+  
+  
+  <meta name="keywords" content="Code, Great Perseverance"/>
+  
+
+  
+  <link rel="canonical" href="https://monsterhxw.github.io/posts/sorting-algorithms-shell-sort/"/>
+
+  
+
+  <title>排序算法: 希尔排序（Shell Sort） &middot; Vivi&#39;s Blog</title>
+
+  <link rel="shortcut icon" href="https://monsterhxw.github.io/images/favicon.ico"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/zozo.css"/>
+  <link rel="stylesheet" href="https://monsterhxw.github.io/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/about/">关于</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-link-unlink"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://monsterhxw.github.io">
+          <span>Vivi&#39;s Blog</span>
+          <img src="https://monsterhxw.github.io/images/logo.svg"/>
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Vivi&#39;s Blog</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/monsterhxw" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Huangxuewei1" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        <a href="https://monsterhxw.github.io/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/sorting-algorithms-shell-sort/'>排序算法: 希尔排序（Shell Sort）</a></h2>
+          <span class="date">2019.07.30</span>
+        </div>
+        <div class="post_content markdown"><blockquote>
+<p>Sorting Algorithms : Shell Sort</p>
+</blockquote>
+
+<h3 id="希尔排序的定义-shell-sort-definition">希尔排序的定义（Shell Sort Definition）</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Shellsort">Wikipedia 上对希尔排序（Shell Sort）描述</a>：</p>
+
+<p>希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本，是一种原地（<a href="https://en.wikipedia.org/wiki/In-place_algorithm">in-place</a>）的比较排序。</p>
+
+<ul>
+<li><p>首先对存在间隔的元素进行排序，然后逐渐减小要比较的元素之间的间隙</p></li>
+
+<li><p>从间隔大的元素开始，这样会比其他简单的比较排序更快地将未排序的元素移动到正确的位置。</p></li>
+</ul>
+
+<p>Shell Sort 的时间复杂度取决于采用的间隔序列。</p>
+
+<p>间隔序列（Gap Sequences）的取法：</p>
+
+<ul>
+<li><p>最初 Donald Shell 提出取间隔（增量）序列（Gap Sequences）为 {n / 2, (n / 2) / 2, ..., 1 }</p></li>
+
+<li><p>Knuth 提出取间隔（增量）序列递推式（Gap Sequences）为 h(1) = 1, ..,  h(i) = 3 * h(i - 1) + 1</p></li>
+
+<li><p>Hibbard 间隔（增量）序列递推式：h(1) = 1, h(i) = 2 * h(i - 1) + 1</p></li>
+</ul>
+
+<h3 id="算法示例-example">算法示例（Example）</h3>
+
+<ol>
+<li><p>排序列表共有  <code>n</code> 个元素，取整数 <code>gap(gap &lt; n)</code> 作为间隔，将列表分成 <code>gap</code> 个子列表，所有距离为 <code>gap</code> 的元素放在同一个子列表中。</p>
+
+<p>对每个子列表分别进行插入排序</p>
+
+<p><img src="/shell-sort-work-1.png" alt="shell-sort-work-1" /></p></li>
+
+<li><p>然后缩小间隔 <code>gap</code> ，如取 <code>gap  = gap / 2</code>，重复<code>步骤 1</code>，划分和排序子列表</p>
+
+<p><img src="/shell-sort-work-2.png" alt="shell-sort-work-2" /></p></li>
+
+<li><p>直至 <code>gap = 1</code> 时，对整个列表进行插入排序</p>
+
+<p><img src="/shell-sort-work-3.png" alt="shell-sort-work-3" /></p></li>
+</ol>
+
+<h3 id="算法复杂度-algorithm-complexity">算法复杂度（Algorithm Complexity）</h3>
+
+<p>时间复杂度（Time Complexities）：</p>
+
+<ul>
+<li><p>最坏情况的复杂度：小于或等于 <code>$\displaystyle O(n^{2})$</code></p>
+
+<p>希尔排序的最坏情况时间复杂度总是小于或等于 <code>$\displaystyle O(n^{2})$</code></p>
+
+<p>希尔排序的最坏情况时间复杂度与取间隔序列策略有关</p></li>
+
+<li><p>最好情况的复杂度：<code>$\displaystyle O\left(n\log^{2}n\right)$</code></p>
+
+<p>当数组已经排序时，每个间隔（或增量）的总比较数等于数组的大小。</p></li>
+
+<li><p>平均情况的复杂度：<code>$\displaystyle O\left(n\log^{2}n\right)$</code></p>
+
+<p>希尔排序的平均情况的复杂度与取间隔序列策略有关，在 <code>$\displaystyle O(n^{1.25})$</code>附近。</p></li>
+</ul>
+
+<p>时间复杂度取决于所选的间隔序列。对于所选择的不同增量序列，上述复杂度不同。最佳增量序列未知。</p>
+
+<p><br/></p>
+
+<p>空间复杂度（Space Complexity）：</p>
+
+<ul>
+<li>因为需要一个临时变量 key ，因此空间复杂度为 <code>O(1)</code></li>
+</ul>
+
+<p>稳定性（Stability）：</p>
+
+<ul>
+<li><p>稳定性概念</p>
+
+<pre><code>如果 a 原本在 b 前面，而 a = b，排序之后 a 仍然在 b 的前面，那么说明该排序是稳定的，反之说明该排序是不稳定的。
+</code></pre></li>
+
+<li><p>希尔排序是不稳定的（Unstable)，因为希尔排序算法不检查位于间隔之间的元素。</p></li>
+</ul>
+
+<h3 id="希尔排序的应用-shell-sort-applications">希尔排序的应用（Shell Sort Applications）</h3>
+
+<p>希尔排序使用于以下的情况：</p>
+
+<ul>
+<li><p>对于调用堆栈是一种开销的行为</p></li>
+
+<li><p>递归超出限制</p></li>
+
+<li><p>当值靠近的元素在间隔很远时，插入排序不能很好地执行。 希尔排序是有利于减少关闭元素之间的距离，因此会减少执行的交换次数。</p></li>
+</ul>
+
+<h3 id="代码实现-code-and-implementation">代码实现（Code and Implementation）</h3>
+
+<p>C 语言实现</p>
+
+<hr />
+
+<pre><code class="language-c">// C program for implementation of shell sort
+
+#include &lt;stdio.h&gt;
+
+// n 为第几个元素，gap 为当前间隔增量
+void insert(int arr[], int n, int gap) {
+    int key = arr[n];
+    int i = n;
+    // 如果该组元素中，前几个元素都比 a[i] 大，则执行后移，把比 a[i] 大的都移动到 a[i] 后面
+    while (i &gt; 0 &amp;&amp; arr[i - gap] &gt; key) {
+        arr[i] = arr[i - gap];
+        i = i - gap;
+        // 当 i - gap 后比 gap 小，说明已经排好序，这时退出循环
+        if (i &lt; gap) {
+            break;
+        }
+    }
+    arr[i] = key;
+}
+
+// n 为列表中元素个数，gap 为当前间隔增量
+void insertionSort(int arr[], int n, int gap) {
+    int i;
+    // 进行插入排序，从每个分组的第 gap 个元素开始，而不是从它的第 1 个元素开始
+    for (i = gap; i &lt; n; i++) {
+        insert(arr, i, gap);
+    }
+}
+
+void shellSort(int arr[], int n) {
+    int gap = 1;
+    // Knuth增量序列递推式：h(1) = 1, h(i) = 3 * h(i-1) + 1
+    while (gap &lt; n) {
+        gap = gap * 3 + 1;
+    }
+    // 间隔增量 gap 每次变小，直到为 1
+    while (gap &gt; 0) {
+        // 进行插入排序，从每个分组的第 gap 个元素开始，而不是从它的第 1 个元素开始
+        insertionSort(arr, n, gap);
+        gap = (gap - 1) / 3;
+    }
+}
+
+// A utility function to print an array of size n
+void printArray(int arr[], int n) {
+    int i;
+    for (i = 0; i &lt; n; i++) {
+        printf(&quot;%d &quot;, arr[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+
+int main() {
+    int arr[] = {14, 18, 19, 37, 23, 40, 29, 30, 11};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf(&quot;Array before sorting: \n&quot;);
+    printArray(arr, n);
+    shellSort(arr, n);
+    printf(&quot;\nArray after sorting: \n&quot;);
+    printArray(arr, n);
+    return 0;
+}
+</code></pre>
+
+<hr />
+
+<h3 id="参考-references">参考（References）</h3>
+
+<ol>
+<li><p><a href="https://www.programiz.com/dsa/shell-sort">Programiz - Shell Sort Algorithm : https://www.programiz.com/dsa/shell-sort</a></p></li>
+
+<li><p><a href="https://www.geeksforgeeks.org/shellsort/">GeeksForGeeks - Shell Sort : https://www.geeksforgeeks.org/shellsort/ </a></p></li>
+
+<li><p><a href="https://en.wikipedia.org/wiki/Shellsort">Wikipedia - Shell sort : https://en.wikipedia.org/wiki/Shellsort</a></p></li>
+</ol></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://monsterhxw.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
+                
+                <a href="https://monsterhxw.github.io/tags/sorting-algorithm/">Sorting Algorithm</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://monsterhxw.github.io/">Designed by MonsterVivi,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span>工欲善其事 必先利其器</span>
+  </div>
+</footer>
+
+
+
+<script src="https://monsterhxw.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://monsterhxw.github.io/js/zozo.js"></script>
+<script src="https://monsterhxw.github.io/js/highlight.pack.js"></script>
+<link  href="https://monsterhxw.github.io/css/fancybox.min.css" rel="stylesheet">
+<script src="https://monsterhxw.github.io/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>
