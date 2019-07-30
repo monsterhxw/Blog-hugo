@@ -1,6 +1,6 @@
 ---
 title: "排序算法: 堆排序（Heap Sort）"
-date: 2019-07-30T00:03:00+08:00
+date: 2019-07-31T01:16:00+08:00
 draft: true
 tags: ["排序算法", "Sorting Algorithm"]
 slug: "sorting-algorithms-heap-sort"
@@ -12,23 +12,16 @@ slug: "sorting-algorithms-heap-sort"
 
 [Wikipedia 上对堆排序（Heap Sort）描述](https://en.wikipedia.org/wiki/Heapsort)：
 
-希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本，是一种原地（[in-place](https://en.wikipedia.org/wiki/In-place_algorithm)）的比较排序。
+堆排序，是一种是原地（[in-place](https://en.wikipedia.org/wiki/In-place_algorithm)）的 [基于比较](https://en.wikipedia.org/wiki/Comparison_sort) 的排序算法，可以被认为是一种改进的 [选择排序](https://en.wikipedia.org/wiki/Selection_sort)，是一种利用  [堆（Head）](https://en.wikipedia.org/wiki/Heap_(data_structure)) 这种数据结构所设计的一种排序算法。
 
-- 首先对存在间隔的元素进行排序，然后逐渐减小要比较的元素之间的间隙
+- 把列表（数组）转换成堆
 
-- 从间隔大的元素开始，这样会比其他简单的比较排序更快地将未排序的元素移动到正确的位置。
+- 通过重复从堆中把根结点和最后一个结点交换，并将根结点值插入到数组中来创建排序数组，把交换后的最后一个结点移出堆，每次删除后都需要更新堆以维持堆的性质
 
 <!--more-->
 
-希尔排序的核心在于间隔序列。
+- 从堆中删除所有结点后，结果就是已排序的列表（数组）
 
-间隔序列（Gap Sequences）的取法：
-
-- 最初 Donald Shell 提出取间隔（增量）序列（Gap Sequences）为 {n / 2, (n / 2) / 2, ..., 1 }
-
-- Knuth 提出取间隔（增量）序列递推式（Gap Sequences）为 h(1) = 1, ..,  h(i) = 3 * h(i - 1) + 1
-
-- Hibbard 间隔（增量）序列递推式：h(1) = 1, h(i) = 2 * h(i - 1) + 1 
 
 ### 算法示例（Example）
 
