@@ -20,7 +20,7 @@ slug: "sorting-algorithms-shell-sort"
 
 <!--more-->
 
-Shell Sort 的时间复杂度取决于采用的间隔序列。
+希尔排序的核心在于间隔序列。
 
 间隔序列（Gap Sequences）的取法：
 
