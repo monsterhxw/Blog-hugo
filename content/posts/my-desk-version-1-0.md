@@ -12,6 +12,5 @@ slug: "my-desk-version-1-0"
 
 <!--more-->
 
-![my-desk-version-1-0](/my-desk/version-1-0/my-desk-version-1-0.png)
+![version1.png](/mydesk/versionone.jpg)
 
-![bubble-sort-work-2](/bubble-sort/bubble-sort-work-2.png)
